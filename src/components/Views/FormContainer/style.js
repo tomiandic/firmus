@@ -34,12 +34,13 @@ formDescription:{
     }
 },
 jobItem:{
-    background: theme.palette.background.light,
+/*     background: theme.palette.background.light, */
     color: theme.palette.text.main,
     boxShadow: "none",
-    borderRadius: 10,
-    marginTop: 4,
+    marginTop: 8,
     fontWeight: "500",
+    padding: "5px 15px",
+    /* boxShadow: "0 1px 1px 1px #d7dfe8, 0 1px 6px -2px #b3c2d0", */
     "& span":{
         display:"block",
         color: theme.palette.text.light,
@@ -48,7 +49,10 @@ jobItem:{
     },
     "& div":{
         margin:"2px 0!important",
-        fontSize: 15
+        fontSize: 16
+    },
+    "&.Mui-expanded":{
+        borderTop: `3px solid ${theme.palette.primary.main}`
     }
 },
 inputList:{
@@ -57,6 +61,7 @@ inputList:{
 },
 accordionContainer:{
     boxShadow: "none",
+    borderRadius: 5,
     paddingRight: 15,
     "&::before":{
         display: "none"
@@ -67,6 +72,7 @@ accordionContainer:{
 }, 
 formTitle:{
     fontWeight: "semidbold",
+    color: theme.palette.text.main,
     margin:0,
     paddingTop: 10,
     [theme.breakpoints.down('xs')]: {
@@ -77,10 +83,10 @@ formTitle:{
 },
 formWrap:{
     [theme.breakpoints.down('xs')]: {
-        padding: "0px 15px",
-        overflow: "hidden",
-/*         height: "calc(100vh - 310px)"
- */    }
+        padding: "40px 15px",
+        overflow: "auto",/* 
+        height: "calc(100vh - 310px)" */
+   }
 },
 /* listItem:{
     borderRadius: 10,
@@ -110,24 +116,27 @@ formButtonIcon:{
     right: 20
 },
 formActionsContainer:{
-    background: "#fff",
+    background: "linear-gradient(to top, white, white, white, transparent)",
+    position: "fixed",
+    bottom: 0,
+    left: 0,
     width: "100%",
     [theme.breakpoints.down('xs')]: {
-        padding: "55px 20px"
+        padding: "55px 20px 35px 20px"
     }
 },
 formLogo:{
     padding:50,
     width: 150
 },
-formChips:{
+/* formChips:{
     display: "flex",
     overflow: "auto",
     alignItems: "center",
     maxWidth:"100%",
     padding: "0 1rem",
-    height: 80
-},
+    height: 30
+}, */
 backButton:{
     position: "absolute",
     top: 10,

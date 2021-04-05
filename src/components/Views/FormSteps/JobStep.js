@@ -21,7 +21,7 @@ export default function JobStep(props){
         <div style={{...props.style}}>
             {Object.keys(jobs).map(jobCategory => (
             <Accordion key={jobCategory} className={classes.accordionContainer}>
-                <AccordionSummary className={classes.jobItem} expandIcon={<ExpandMore />}>
+                <AccordionSummary elevation={1} className={classes.jobItem} expandIcon={<ExpandMore />}>
                     <div>
                         {jobCategory}
                         <span>{jobs[jobCategory].length} potkategorija</span>

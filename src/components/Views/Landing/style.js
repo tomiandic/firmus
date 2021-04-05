@@ -65,7 +65,7 @@ loginDiv:{
 landingTitle:{
    fontSize: 25,
    [theme.breakpoints.down('xs')]: {
-      fontSize: 20
+      fontSize: 22
    },
    [theme.breakpoints.up('xl')]: {
       fontSize: 50
@@ -76,7 +76,8 @@ landingSubTitle:{
    maxWidth: 450,
    [theme.breakpoints.down('xs')]: {
       lineHeight: "1.5rem",
-      opacity: .8
+      opacity: .8,
+      fontSize: 13
    }
 },
 landingBtn:{
@@ -115,8 +116,8 @@ landingLink:{
    }
 },
 landingLogo:{
-   height: 50,
-   width: 50,
+   height: 80,
+   width: 80,
    marginTop: -50,
    marginBottom: 50,
    position: "relative",

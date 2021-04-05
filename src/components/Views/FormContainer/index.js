@@ -153,17 +153,17 @@ export default function FormContainer({index}){
             <div className={classes.formContent}> 
                 <div className={classes.formContentInner}>
                     <h2 className={classes.formTitle}>{stepInfo.formTitle}</h2>
-                    <div className={classes.formChips}>
-                        {index===0?
+                   {/* <div className={classes.formChips}>
+                         {index===0?
                             Object.keys(selectedJobs).map(job=>(
-                                selectedJobs[job]?<Chip onDelete={() => setJobSelected(prevState => ({...prevState, [job]:!prevState[job]}))} color="primary" style={{fontSize: 11, marginRight:6}} size="small" label={job} />:null
+                                selectedJobs[job]?<Chip onDelete={() => setJobSelected(prevState => ({...prevState, [job]:!prevState[job]}))} color="primary" variant="outlined" style={{fontSize: 12, fontWeight: 500, marginRight:6}} label={job} />:null
                             ))
                         :index===1?
                             Object.keys(languages).map(language=>(
-                                showChip(language)?<Chip onDelete={() => setLanguageSelected(prevState => ({...prevState, [language]:!prevState[language]}))} color="primary" style={{fontSize: 11, marginRight:6}} size="small" label={language} />:null
+                                showChip(language)?<Chip onDelete={() => setLanguageSelected(prevState => ({...prevState, [language]:!prevState[language]}))} color="primary" variant="outlined" style={{fontSize: 12, fontWeight: 500, marginRight:6}} label={language} />:null
                             ))
-                        :null}
-                    </div>
+                        :null} 
+                    </div>*/}
                     <div className={classes.formWrap}>
                         {renderFormStep()}
                     </div>
