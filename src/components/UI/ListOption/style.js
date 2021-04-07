@@ -1,12 +1,7 @@
 export default theme => ({
 
 listItem:{
-    borderRadius: 10,
-    color: theme.palette.text.light,
-    "&:hover":{
-        background: theme.palette.background.light,
-        cursor: "pointer"
-    }
+    color: theme.palette.text.light
     },
 listItemActive:{
     color: theme.palette.text.main,

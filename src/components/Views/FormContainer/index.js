@@ -168,7 +168,7 @@ export default function FormContainer({index}){
                         {renderFormStep()}
                     </div>
                     <div className={classes.formActionsContainer}>
-                        <Button onClick={() => loadNextStep()} className={classes.formButton} variant="contained">Nastavi<ArrowForward className={classes.formButtonIcon} /></Button>
+                        <Button onClick={() => loadNextStep()} className={classes.formButton} variant="contained">{stepInfo.buttonTitle}<ArrowForward className={classes.formButtonIcon} /></Button>
                     </div>
                 </div>
             </div>

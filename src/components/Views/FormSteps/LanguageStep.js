@@ -85,7 +85,7 @@ export default function LanguageStep(props){
                         width={1}
                         height={1000}
                         rowCount={Object.keys(languages).filter(filterLanguages).length}
-                        rowHeight={50}
+                        rowHeight={65}
                         rowRenderer={rowRenderer}
                         containerStyle={{
                               width: "100%",

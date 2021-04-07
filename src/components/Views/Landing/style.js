@@ -51,7 +51,7 @@ loginDiv:{
    [theme.breakpoints.down('xs')]: {
       bottom: 160,
       top: "unset",
-      padding: 30,
+      padding: 35,
       borderRadius: 25,
       width: "90%",
       minWidth: "unset",
@@ -87,9 +87,11 @@ landingBtn:{
    [theme.breakpoints.down('xs')]: {
       width: "fit-content",
       position: "absolute",
-      bottom: -25,
+      bottom: -30,
       left: "50%",
-      transform: "translateX(-50%)"
+      transform: "translateX(-50%)",
+      width: 85,
+      height:60 
    }
 },
 landingLink:{

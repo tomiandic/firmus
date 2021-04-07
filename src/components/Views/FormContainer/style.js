@@ -40,7 +40,6 @@ jobItem:{
     marginTop: 8,
     fontWeight: "500",
     padding: "5px 15px",
-    /* boxShadow: "0 1px 1px 1px #d7dfe8, 0 1px 6px -2px #b3c2d0", */
     "& span":{
         display:"block",
         color: theme.palette.text.light,
@@ -52,7 +51,7 @@ jobItem:{
         fontSize: 16
     },
     "&.Mui-expanded":{
-        borderTop: `3px solid ${theme.palette.primary.main}`
+        borderBottom: `2px solid ${theme.palette.primary.main}`
     }
 },
 inputList:{
@@ -60,8 +59,8 @@ inputList:{
     color: theme.palette.text.light
 },
 accordionContainer:{
-    boxShadow: "none",
-    borderRadius: 5,
+    boxShadow: "0 0 40px -5px #e9ebf5", 
+    borderRadius: 10,
     paddingRight: 15,
     "&::before":{
         display: "none"
@@ -143,6 +142,7 @@ backButton:{
     left: 5
 },
 topDecoration:{
+    display: "none",
     position: "absolute",
     top: -50,
     right: -35,
@@ -156,13 +156,16 @@ topDecoration:{
 pickerContainer:{
     display: "grid",
     gridGap: 20,
-    gridTemplateColumns: "repeat(auto-fill, minmax(80px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fill, minmax(85px, 1fr))",
 },
 buttonPicker:{
-    background: theme.palette.background.light,
+    /* background: theme.palette.background.light, */
+    background: "#fff",
     borderRadius: 20,
     position: "relative",
-    border: `3px solid ${theme.palette.background.light}`,
+    /* border: `3px solid ${theme.palette.background.light}`, */
+    border: "3px solid #fff",
+    boxShadow: "0 0 30px -3px #e2e5f3",
     transition: "300ms all ease-out",
     fill: theme.palette.text.light
 },
@@ -172,7 +175,7 @@ buttonPickerActive:{
     background: "#fff",
     boxShadow: "0 10px 10px -2px #2196f31f",
     "& span":{
-        color: theme.palette.primary.main
+        color: theme.palette.text.main
     },
     "& img": {
         opacity: 1
@@ -190,7 +193,7 @@ buttonPickerCheck:{
     opacity: 0
 },
 buttonPickerIcon:{
-    width:"35%",
+    width:"30%",
     marginBottom: 10,
     opacity: .7
 },
@@ -198,7 +201,9 @@ buttonPickerLabel:{
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "25px 10px 15px 10px",
+    justifyContent: "center",
+    height: "95px"
+    /* padding: "25px 10px 15px 10px", */
 },
 buttonPickerTitle:{
     color: theme.palette.text.light,
@@ -211,8 +216,7 @@ buttonPickerTitleBig:{
     fontSize: 18,
     fontWeight: 500,
     textTransform: "uppercase",
-    letterSpacing:.2,
-    margin: "5px 0 18px 0"
+    letterSpacing:.2
 },
 buttonPickerMainIcon:{
     width: 50,
@@ -245,6 +249,7 @@ modalActionContainer:{
 },
 modalInput:{
     width: "100%",
+    color: "red!important"
 },
 modalTopActions:{
     padding: 20,
@@ -256,7 +261,7 @@ modalTopActions:{
     zIndex: 1
 },
 inputLabel:{
-    marginBottom: 4,
+    marginBottom: 7,
     marginLeft:4,
     fontSize:11,
     fontWeight: 500,
@@ -264,10 +269,18 @@ inputLabel:{
 },
 basicInfoContainer:{
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    paddingBottom: 100
 },
 infoInput:{
     width: "100%"
+},
+phoneNumInput:{
+    width: "100%",
+    "& input":{
+    fontSize: "20px!important",
+    textAlign: "center!important"
+    }
 },
 inputContainer:{
     flex:1,
@@ -341,5 +354,14 @@ verificationInputContainer:{
     "& :focus": {
         border: `2px solid ${theme.palette.primary.main}`
     }
+},
+badge:{
+    background: "red",
+    height: 20,
+    width: 20,
+    borderRadius:  100,
+    position: "absolute",
+    top: 5,
+    right: 5
 }
 })

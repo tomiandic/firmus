@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {makeStyles, ListItem, Checkbox, Radio} from "@material-ui/core";
 import styles from "./style.js";
 
