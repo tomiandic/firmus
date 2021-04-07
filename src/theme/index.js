@@ -57,7 +57,6 @@ const theme = createMuiTheme({
               },
               input:{
                   backgroundColor: "#f5f7fc!important",
-                  boxShadow: "0 0 20px -3px #e2e5f3",
                   border:"none",
                   borderRadius: 110,
                   fontSize: 14,

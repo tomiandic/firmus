@@ -22,7 +22,7 @@ export default function NumberConfirmationStep(props){
                 <div className={classes.modalLocationFeedback}>
                     <img className={classes.illustration} src={phoneIllustration} /><br /> <br />
                     <InputLabel style={{marginRight: "auto"}} className={classes.inputLabel}>Broj Telefona</InputLabel>
-                <TextField name="phoneNumber" onChange={(e)=>handleInputChange(e)} value={phoneNumber} className={classes.phoneNumInput} variant="filled"/>
+                <TextField type="tel" name="phoneNumber" onChange={(e)=>handleInputChange(e)} value={phoneNumber} className={classes.phoneNumInput} variant="filled"/>
                 </div>
 
             </div>

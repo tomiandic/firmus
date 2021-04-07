@@ -217,7 +217,7 @@ export default function BasicInfoStep(props){
                                 width={1}
                                 height={1000}
                                 rowCount={data.cities?data.cities.filter(filterCities).length:0}
-                                rowHeight={55}
+                                rowHeight={65}
                                 rowRenderer={rowRenderer}
                                 containerStyle={{
                                   width: "100%",
