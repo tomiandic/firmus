@@ -5,6 +5,7 @@ import {makeStyles, IconButton, Modal, Backdrop, Fade, Paper, Button, TextField,
 import styles from "../FormContainer/style.js";
 import AddIcon from '@material-ui/icons/Add';
 import data from "../../../data/data.json";
+import noResultsIcon from "./../../../assets/NoResultsIcon.svg";
 
 const useStyles = makeStyles(styles);
 
@@ -34,7 +35,6 @@ export default function LanguageStep(props){
         isScrolling,
         isVisible,
         key,
-        parent,
         style
     }){
         const filteredLanguages = Object.keys(languages).filter(filterLanguages);
@@ -43,6 +43,8 @@ export default function LanguageStep(props){
             <ListOption optionName={language} optionChecked={languages[language]} handleCheckbox={selectLanguage} key={key} style={{...style, width: "100%"}} />
         )
     }
+
+    let rowCount = Object.keys(languages).filter(filterLanguages).length;
 
     return(
         <>
@@ -81,18 +83,27 @@ export default function LanguageStep(props){
                     </div>
 
                     <div className={classes.modalContent}>
-                    <VirtualList
+                    {
+                    rowCount>0?
+                     <VirtualList
                         width={1}
                         height={1000}
-                        rowCount={Object.keys(languages).filter(filterLanguages).length}
+                        rowCount={rowCount}
                         rowHeight={65}
                         rowRenderer={rowRenderer}
                         containerStyle={{
                               width: "100%",
                               maxWidth: "100%"
                         }}
-                        style={{width: "100%"}}
-                    />
+                        style={{
+                            width: "100%",
+                            outline:"none"
+                            }}
+                    />: <div className={classes.modalFeedback}>
+                        <img className={classes.illustration} src={noResultsIcon} />
+                        <p className={classes.modalFeedbackTitle}>Nema rezultata</p>
+                        </div>
+                    }
                     </div>
                     <div className={classes.modalActionContainer}>
                         <Button variant="contained" onClick={() => setOpen(false)} className={classes.formButton}>Spremi</Button>

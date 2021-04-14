@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 import {
     AccordionSummary,
     AccordionDetails, 
@@ -7,10 +7,11 @@ import {
     Accordion} from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 import ListOption from '../../UI/ListOption';
-import styles from "../FormContainer/style.js";
+import waiterIcon from './../../../assets/jobIcons/waiter.svg';
+import styles from '../FormContainer/style.js';
 const useStyles = makeStyles(styles);
 
-
+ 
 export default function JobStep(props){
 
     const selectJob = (e) =>{setJobSelected(prevState => ({...prevState, [e.target.name]:e.target.checked}))};
@@ -22,6 +23,9 @@ export default function JobStep(props){
             {Object.keys(jobs).map(jobCategory => (
             <Accordion key={jobCategory} className={classes.accordionContainer}>
                 <AccordionSummary elevation={1} className={classes.jobItem} expandIcon={<ExpandMore />}>
+                    <div className={classes.jobIcon}>
+                        <img src={waiterIcon}/>
+                    </div>
                     <div>
                         {jobCategory}
                         <span>{jobs[jobCategory].length} potkategorija</span>

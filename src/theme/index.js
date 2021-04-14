@@ -17,23 +17,23 @@ const theme = createMuiTheme({
             light: "#6c7595"
         }, 
         background: {
-            light: "#edf3fe"
+            light: "#f0f2f5"
         }
     },
     overrides:{
         MuiFilledInput:{
             root:{
-                backgroundColor: "#f8f9fc!important",
+                backgroundColor: "#f0f2f5!important",
                 color: "#263448",
-                borderTopLeftRadius: 8,
-                borderTopRightRadius: 8,
+                borderTopLeftRadius: 6,
+                borderTopRightRadius: 6,
                 "&.Mui-focused":{
                   backgroundColor: "#f5f7fc!important",
                 }
               },
               underline:{
                 "&&&:before": {
-                borderBottom:"2px solid #b3c0d7"
+                borderBottom:"2px solid #f0f2f5"
               }}
         },
 
@@ -56,12 +56,11 @@ const theme = createMuiTheme({
                 border: "none"
               },
               input:{
-                  backgroundColor: "#f5f7fc!important",
-                  boxShadow: "0 0 20px -3px #e2e5f3",
+                  backgroundColor: "#f0f2f5!important",
                   border:"none",
                   borderRadius: 110,
                   fontSize: 14,
-                  color: "#6c7595",
+                  color: "#263448",
               },
               notchedOutline:{
                   border: "none",

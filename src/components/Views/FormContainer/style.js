@@ -47,7 +47,6 @@ jobItem:{
         fontWeight: "200",
     },
     "& div":{
-        margin:"2px 0!important",
         fontSize: 16
     },
     "&.Mui-expanded":{
@@ -260,6 +259,24 @@ modalTopActions:{
     background: "linear-gradient(180deg, white, white, transparent)",
     zIndex: 1
 },
+modalContent:{
+    outline: "none",
+    height: "auto",
+},
+modalFeedback: {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    padding: 30,
+},
+modalFeedbackTitle: {
+    fontSize: 20,
+    marginTop: 50,
+    maxWidth: 300,
+    textAlign: "center",
+    color: theme.palette.background.light,
+    fontWeight: 500
+},
 inputLabel:{
     marginBottom: 7,
     marginLeft:4,
@@ -363,5 +380,19 @@ badge:{
     position: "absolute",
     top: 5,
     right: 5
+},
+jobIcon:{
+    background: "#ebf3ff",
+    display:"flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+    width: 45,
+    height: 45,
+    marginRight: "10px!important",
+    "&>img":{
+        width: 27,
+        height: 27
+    }
 }
 })

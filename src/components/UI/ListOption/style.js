@@ -11,5 +11,10 @@ checkbox:{
     marginLeft: "auto",
     color: theme.palette.text.light
 },
-
+listItemLabel:{
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
+}
 })

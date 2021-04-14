@@ -4,10 +4,12 @@ import {List as VirtualList} from 'react-virtualized';
 import {TextField, makeStyles, InputLabel, Modal, Backdrop, Paper, Fade, Button, Divider, CircularProgress} from '@material-ui/core';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import DatePicker from 'react-mobile-datepicker';
-import locationIllustration from '../../../assets/LocationIllustration.svg';
-import locationErrorIllustration from '../../../assets/LocationErrorIllustration.svg';
+import locationIcon from '../../../assets/pin.svg';
+import locationErrorIcon from '../../../assets/pinErr.svg';
 import styles from "../FormContainer/style.js";
 import data from "./../../../data/data.json";
+import noResultsIcon from "./../../../assets/NoResultsIcon.svg";
+
 
 const useStyles = makeStyles(styles);
 const DATE_CONFIG = {
@@ -131,7 +133,7 @@ export default function BasicInfoStep(props){
     }
 
     const classes = useStyles();
-
+    let rowCount = data.cities?data.cities.filter(filterCities).length:0;
     return(
         <div style={{...props.style}} className={classes.basicInfoContainer}>
 
@@ -213,6 +215,7 @@ export default function BasicInfoStep(props){
                             />
                         </div>
                         <div className={classes.modalContent}>
+                        {rowCount>0?
                             <VirtualList
                                 width={1}
                                 height={1000}
@@ -225,6 +228,10 @@ export default function BasicInfoStep(props){
                                 }}
                                 style={{width: "100%"}}
                             />
+                        :<div className={classes.modalFeedback}>
+                            <img className={classes.illustration} src={noResultsIcon} />
+                            <p className={classes.modalFeedbackTitle}>Nema rezultata</p>
+                        </div>}
                         </div>
                         <div className={classes.modalActionContainer}>
                             <Button variant="contained" onClick={() => handlePickedCitySave()} className={classes.formButton}>Spremi</Button>
@@ -244,7 +251,7 @@ export default function BasicInfoStep(props){
                                 {
                                 currentLocation?
                                     <>
-                                        <img className={classes.illustration} src={locationIllustration} /><br /> <br />
+                                        <img className={classes.illustration} src={locationIcon} /><br /> <br />
                                         <p>Tvoja lokacija je:</p>
                                         <h1>{currentLocation}</h1>
                                         <Button variant="contained" onClick={() => savePosition()} className={classes.formButton}>Postavi kao moju lokaciju</Button>
@@ -252,7 +259,7 @@ export default function BasicInfoStep(props){
                                     </>
                                 :locationError?
                                     <>
-                                        <img className={classes.illustration} src={locationErrorIllustration} /><br /> <br />
+                                        <img className={classes.illustration} src={locationErrorIcon} /><br /> <br />
                                         <h1>{locationError}</h1>
                                         <a onClick={() => setOpenLocationFeedback(false)} className={classes.subLink}>Unesi lokaciju ručno</a>
                                     </>
