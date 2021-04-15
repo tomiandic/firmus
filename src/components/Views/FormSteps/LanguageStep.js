@@ -6,7 +6,8 @@ import styles from "../FormContainer/style.js";
 import AddIcon from '@material-ui/icons/Add';
 import data from "../../../data/data.json";
 import noResultsIcon from "./../../../assets/NoResultsIcon.svg";
-
+import { ArrowBack } from '@material-ui/icons';
+ 
 const useStyles = makeStyles(styles);
 
 export default function LanguageStep(props){
@@ -73,6 +74,9 @@ export default function LanguageStep(props){
             <Fade in={open}>
                 <Paper className={classes.modalContainer}>
                     <div className={classes.modalTopActions}>
+                        <IconButton onClick={() => setOpen(false)} color="primary" style={{marginLeft: -10}}>
+                            <ArrowBack />
+                        </IconButton>
                         <TextField 
                             variant="outlined"  
                             value={filterValue}

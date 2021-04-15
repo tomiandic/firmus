@@ -16,15 +16,14 @@ export default function NumberConfirmationStep(props){
   
     const classes = useStyles();
 
-    return(
+    return( 
         <div {...props} className={classes.basicInfoContainer}>
             <div style={{minWidth:"100%"}} className={classes.inputContainer}>
                 <div className={classes.modalLocationFeedback}>
                     <img className={classes.illustration} src={phoneIllustration} /><br /> <br />
-                    <InputLabel style={{marginRight: "auto"}} className={classes.inputLabel}>Broj Telefona</InputLabel>
-                <TextField name="phoneNumber" onChange={(e)=>handleInputChange(e)} value={phoneNumber} className={classes.phoneNumInput} variant="filled"/>
+                    <InputLabel className={classes.inputLabel}>BROJ TELEFONA</InputLabel><br />
+                <TextField type="tel" name="phoneNumber" onChange={(e)=>handleInputChange(e)} value={phoneNumber} className={classes.phoneNumInput} variant="filled"/>
                 </div>
-
             </div>
         </div>
     )

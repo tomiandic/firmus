@@ -58,7 +58,7 @@ inputList:{
     color: theme.palette.text.light
 },
 accordionContainer:{
-    boxShadow: "0 0 40px -5px #e9ebf5", 
+    boxShadow: "0 0 20px -5px #e9ebf5", 
     borderRadius: 10,
     paddingRight: 15,
     "&::before":{
@@ -256,6 +256,7 @@ modalTopActions:{
     top: 0,
     left: 0,
     width: "100%",
+    display: "flex",
     background: "linear-gradient(180deg, white, white, transparent)",
     zIndex: 1
 },
@@ -301,7 +302,7 @@ phoneNumInput:{
 },
 inputContainer:{
     flex:1,
-    marginBottom:30
+    marginBottom:40
 },
 locationButton:{
     display: "flex",

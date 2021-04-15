@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ListOption from '../../UI/ListOption';
 import {List as VirtualList} from 'react-virtualized';
-import {TextField, makeStyles, InputLabel, Modal, Backdrop, Paper, Fade, Button, Divider, CircularProgress} from '@material-ui/core';
+import {TextField, makeStyles, InputLabel, IconButton, Modal, Backdrop, Paper, Fade, Button, Divider, CircularProgress} from '@material-ui/core';
 import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
 import DatePicker from 'react-mobile-datepicker';
 import locationIcon from '../../../assets/pin.svg';
@@ -9,6 +9,7 @@ import locationErrorIcon from '../../../assets/pinErr.svg';
 import styles from "../FormContainer/style.js";
 import data from "./../../../data/data.json";
 import noResultsIcon from "./../../../assets/NoResultsIcon.svg";
+import { ArrowBack } from '@material-ui/icons';
 
 
 const useStyles = makeStyles(styles);
@@ -83,14 +84,14 @@ export default function BasicInfoStep(props){
 
     const getUserLocation = () => {
         setOpenLocationFeedback(true);
+
         if ( navigator.geolocation ) { 
            navigator.geolocation.getCurrentPosition( setCurrentPosition, positionError, { 
                 enableHighAccuracy: true, 
                 timeout: 15000, 
                 maximumAge: 0 
             } );
-        } 
-    }
+        } }
 
     function positionError( error ) { 
         switch ( error.code ) { 
@@ -130,7 +131,7 @@ export default function BasicInfoStep(props){
         return (
             <ListOption type="radio" optionName={city} optionChecked={city===pickedCity} handleCheckbox={handleCityPick} key={key} style={{...style, width: "100%"}} />
         ) 
-    }
+    } 
 
     const classes = useStyles();
     let rowCount = data.cities?data.cities.filter(filterCities).length:0;
@@ -160,6 +161,7 @@ export default function BasicInfoStep(props){
                     confirmText="Spremi"
                     cancelText="Odustani"
                     onCancel={handleDatePickerClose}
+                    className={classes.datepickerCustom}
                     />
             </div>
 
@@ -206,6 +208,9 @@ export default function BasicInfoStep(props){
                         </div>
                         <Divider light />
                         <div className={classes.modalTopActions}>
+                            <IconButton onClick={() => setOpenCityList(false)} color="primary" style={{marginLeft: -10}}>
+                                <ArrowBack />
+                            </IconButton>
                             <TextField 
                                 variant="outlined"  
                                 value={filterValue}
@@ -220,7 +225,7 @@ export default function BasicInfoStep(props){
                                 width={1}
                                 height={1000}
                                 rowCount={data.cities?data.cities.filter(filterCities).length:0}
-                                rowHeight={55}
+                                rowHeight={65}
                                 rowRenderer={rowRenderer}
                                 containerStyle={{
                                   width: "100%",

@@ -17,13 +17,13 @@ const theme = createMuiTheme({
             light: "#6c7595"
         }, 
         background: {
-            light: "#f0f2f5"
+            light: "#F5F7FC"
         }
     },
     overrides:{
         MuiFilledInput:{
             root:{
-                backgroundColor: "#f0f2f5!important",
+                backgroundColor: "#F5F7FC!important",
                 color: "#263448",
                 borderTopLeftRadius: 6,
                 borderTopRightRadius: 6,
@@ -33,7 +33,7 @@ const theme = createMuiTheme({
               },
               underline:{
                 "&&&:before": {
-                borderBottom:"2px solid #f0f2f5"
+                borderBottom:"2px solid #F5F7FC"
               }}
         },
 
@@ -56,7 +56,7 @@ const theme = createMuiTheme({
                 border: "none"
               },
               input:{
-                  backgroundColor: "#f0f2f5!important",
+                  backgroundColor: "#F5F7FC!important",
                   border:"none",
                   borderRadius: 110,
                   fontSize: 14,

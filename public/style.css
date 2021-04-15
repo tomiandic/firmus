@@ -1,0 +1,27 @@
+/* overriding datepicker plugin style*/
+
+ .datepicker-modal{
+    position: fixed!important;
+    background-color: rgb(15 95 158 / 40%);
+}
+.datepicker.android{
+    padding-top: 2rem;
+    border-top-right-radius: 28px;
+    border-top-left-radius: 28px;
+}
+
+.datepicker.android .datepicker-wheel{
+    border-top: 2px solid #1479EC!important;
+    border-bottom: 2px solid #1479EC!important;
+}
+.datepicker-navbar{
+    flex-direction: row-reverse;
+    align-items: center;
+    border-top: none!important;
+}
+.datepicker-navbar-btn:first-of-type{
+    color: #fff!important;
+    background: #1479EC;
+    border-radius: 15px;
+    margin: 10px;
+}
