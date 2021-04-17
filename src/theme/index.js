@@ -45,8 +45,8 @@ const theme = createMuiTheme({
                 backgroundColor: "#1479EC",
                 boxShadow: "0 5px 25px 2px #0077ff44",
                 "&:hover": {
-                  backgroundColor: "#183edd",
-                  boxShadow: "0 5px 25px 2px #0077ff5d",
+                  backgroundColor: "#1479EC!important",
+                  boxShadow: "0 5px 25px 2px #0077ff5d!important",
                 }
               }
         },

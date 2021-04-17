@@ -102,12 +102,7 @@ scrollBar:{
 },
 formButton:{
     textTransform: "unset",
-    width: "100%",
-    [theme.breakpoints.down('xs')]: {
-        "&:hover":{
-          background: theme.palette.primary.main
-        }
-    }
+    width: "100%"
 },
 formButtonIcon:{
     position: "absolute",
@@ -127,14 +122,6 @@ formLogo:{
     padding:50,
     width: 150
 },
-/* formChips:{
-    display: "flex",
-    overflow: "auto",
-    alignItems: "center",
-    maxWidth:"100%",
-    padding: "0 1rem",
-    height: 30
-}, */
 backButton:{
     position: "absolute",
     top: 10,
@@ -285,6 +272,13 @@ inputLabel:{
     fontWeight: 500,
     color: theme.palette.text.main
 },
+inputLabelCenter:{
+    marginTop: 40,
+    marginBottom: 25,
+    color: theme.palette.text.main,
+    fontSize:11,
+    fontWeight: 500,
+},
 basicInfoContainer:{
     display: "flex",
     flexWrap: "wrap",
@@ -294,10 +288,9 @@ infoInput:{
     width: "100%"
 },
 phoneNumInput:{
-    width: "100%",
+    width: 250,
     "& input":{
-    fontSize: "20px!important",
-    textAlign: "center!important"
+    fontSize: "20px!important"
     }
 },
 inputContainer:{
@@ -367,7 +360,12 @@ verificationInputContainer:{
         fontSize: 18,
         color: theme.palette.text.main,
         fontFamily: "inherit",
-        fontWeight: 500
+        fontWeight: 500,
+        "-moz-appearance": "textfield",
+        "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
+            "-webkit-appearance": "none",
+            margin: 0
+        }
     },
     "& :focus": {
         border: `2px solid ${theme.palette.primary.main}`

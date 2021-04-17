@@ -6,23 +6,23 @@ import styles from "../FormContainer/style.js";
 const useStyles = makeStyles(styles);
 
 
-export default function NumberConfirmationStep(props){
+export default function PhoneNumberStep(props){
 
-    const [phoneNumber, setPhoneNumber] = useState("");
     const handleInputChange = (e) => {
         const {value} = e.target;
-        setPhoneNumber(value);
+        if(value.length<5)return;
+        props.setPhoneNumber(value);
     } 
   
     const classes = useStyles();
 
     return( 
-        <div {...props} className={classes.basicInfoContainer}>
+        <div style={{...props.style}} className={classes.basicInfoContainer}>
             <div style={{minWidth:"100%"}} className={classes.inputContainer}>
                 <div className={classes.modalLocationFeedback}>
-                    <img className={classes.illustration} src={phoneIllustration} /><br /> <br />
-                    <InputLabel className={classes.inputLabel}>BROJ TELEFONA</InputLabel><br />
-                <TextField type="tel" name="phoneNumber" onChange={(e)=>handleInputChange(e)} value={phoneNumber} className={classes.phoneNumInput} variant="filled"/>
+                    <img className={classes.illustration} src={phoneIllustration} />
+                    <InputLabel className={classes.inputLabelCenter}>BROJ TELEFONA</InputLabel>
+                    <TextField fullWidth autoFocus type="tel" name="phoneNumber" onChange={(e)=>handleInputChange(e)} value={props.phoneNumber} className={classes.phoneNumInput} variant="filled"/>
                 </div>
             </div>
         </div>

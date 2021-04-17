@@ -17,6 +17,7 @@ export default function VerificationCodeStep(props){
 
     const handleInputChange = async (e) => {
         const {value, name} = e.target;
+        if(value.length>1)return;
         let currentIndex = parseInt(name);
         await handleFocus(e);
         let tempCode = [...code];
@@ -26,6 +27,15 @@ export default function VerificationCodeStep(props){
             itemEls.current[currentIndex+1].focus();
             itemEls.current[currentIndex+1].value="";
         }else{
+            e.target.blur();
+            props.setShowLoader(true);
+            setTimeout(
+                () => {
+                    props.setShowLoader(false);
+                    props.loadNextStep();
+                },
+                3000
+            )
             //POŠALJI KOD--------------------
         }
     } 
@@ -44,14 +54,13 @@ export default function VerificationCodeStep(props){
         <div {...props} className={classes.basicInfoContainer}>
             <div style={{minWidth:"100%"}} className={classes.inputContainer}>
                 <div className={classes.modalLocationFeedback}>
-                    <img className={classes.illustration} src={codeIllustration} /><br /> <br />
-                    <InputLabel className={classes.inputLabel}>VERIFIKACIJSKI KOD</InputLabel>
-                    <br />
+                    <img className={classes.illustration} src={codeIllustration} />
+                    <InputLabel className={classes.inputLabelCenter}>VERIFIKACIJSKI KOD</InputLabel>
                     <div className={classes.verificationInputContainer}>
-                        <input onFocus={(e) => handleFocus(e)} ref={(element) => itemEls.current.push(element)} onChange={(e) => handleInputChange(e)} name="0" value={code[0]} type="number" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                        <input onFocus={(e) => handleFocus(e)} ref={(element) => itemEls.current.push(element)} onChange={(e) => handleInputChange(e)} name="1" value={code[1]} type="number" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                        <input onFocus={(e) => handleFocus(e)} ref={(element) => itemEls.current.push(element)} onChange={(e) => handleInputChange(e)} name="2" value={code[2]} type="number" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-                        <input onFocus={(e) => handleFocus(e)} ref={(element) => itemEls.current.push(element)} onChange={(e) => handleInputChange(e)} name="3" value={code[3]} type="number" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                        <input autoFocus onFocus={(e) => handleFocus(e)} ref={(element) => itemEls.current.push(element)} onChange={(e) => handleInputChange(e)} name="0" value={code[0]} type="number" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                        <input onFocus={(e) => handleFocus(e)} ref={(element) => itemEls.current.push(element)} onChange={(e) => handleInputChange(e)} name="1" value={code[1]} type="number" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                        <input onFocus={(e) => handleFocus(e)} ref={(element) => itemEls.current.push(element)} onChange={(e) => handleInputChange(e)} name="2" value={code[2]} type="number" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                        <input onFocus={(e) => handleFocus(e)} ref={(element) => itemEls.current.push(element)} onChange={(e) => handleInputChange(e)} name="3" value={code[3]} type="number" maxlength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
                     </div>
                 </div>
             </div>

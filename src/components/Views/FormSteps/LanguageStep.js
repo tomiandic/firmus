@@ -104,8 +104,8 @@ export default function LanguageStep(props){
                             outline:"none"
                             }}
                     />: <div className={classes.modalFeedback}>
-                        <img className={classes.illustration} src={noResultsIcon} />
-                        <p className={classes.modalFeedbackTitle}>Nema rezultata</p>
+                            <img className={classes.illustration} src={noResultsIcon} />
+                            <p className={classes.modalFeedbackTitle}>Nema rezultata</p>
                         </div>
                     }
                     </div>

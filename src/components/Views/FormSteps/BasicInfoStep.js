@@ -140,7 +140,7 @@ export default function BasicInfoStep(props){
 
             <div style={{minWidth:"100%"}} className={classes.inputContainer}>
                 <InputLabel className={classes.inputLabel}>Ime i prezime*</InputLabel>
-                <TextField onChange={(e) => handleInputChange(e)} value={info.fullName} name="fullName" className={classes.infoInput} variant="filled"/>
+                <TextField autoFocus onChange={(e) => handleInputChange(e)} value={info.fullName} name="fullName" className={classes.infoInput} variant="filled"/>
             </div>  
 
             <div style={{marginRight: 5}} className={classes.inputContainer}>

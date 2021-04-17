@@ -66,7 +66,6 @@ export default theme => ({
        background: "transparent",
        color: "#fff",
        textAlign: "left"
-
     },
     stepperLabel:{
        "&  span":{
@@ -82,8 +81,6 @@ export default theme => ({
        fontSize: 13
     },
     successCircle:{
-       background: "#23ec68",
-       padding: "20px 23px",
        borderRadius: 100,
        marginTop: -55
     },
@@ -104,6 +101,50 @@ export default theme => ({
        },
        "& a":{
           margin: 15
+       },
+       "& svg":{
+          fill: "#fff"
        }
-    }
-    }) 
+    },
+
+
+//success animation
+
+   tick: {
+      strokeOpacity: 0,
+      strokeDasharray: 29,
+      strokeDashoffset: 29,
+      animation: `$draw 500ms cubic-bezier(.25, .25, .25, 1) forwards`,
+      animationDelay: "1.6s"
+  },
+
+  circle: {
+      fillOpacity: 0,
+      stroke: "#007aff",
+      strokeWidth: 16,
+      transformOrigin: "center",
+      transform: "scale(0)",
+      animation: `$grow 1s cubic-bezier(.25, .25, .25, 1.25) forwards`,
+      animationDelay: "1s"
+  },
+
+"@keyframes grow": {
+  "60%": {
+      transform: "scale(.8)",
+      strokeWidth: 4,
+      fillOpacity: 0,
+  },
+  "100%": {
+      transform: "scale(.9)",
+      strokeWidth: 8,
+      fillOpacity: 1,
+      fill: "#07e387",
+      stroke: "#07e387", 
+  }
+},
+
+"@keyframes draw": {
+  "0%, 100%": { strokeOpacity: 1 },
+  "100%": { strokeDashoffset: 0 }
+}
+}) 

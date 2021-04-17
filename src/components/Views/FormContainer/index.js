@@ -4,8 +4,9 @@ import JobStep from "../FormSteps/JobStep";
 import LanguageStep from "../FormSteps/LanguageStep";
 import AvailabilityStep from "../FormSteps/AvailabilityStep";
 import BasicInfoStep from "../FormSteps/BasicInfoStep";
-import NumberConfirmationStep from "../FormSteps/NumberConfirmationStep";
+import PhoneNumberStep from "../FormSteps/PhoneNumberStep";
 import VerificationCodeStep from "../FormSteps/VerificationCodeStep";
+import Loader from "../../UI/Loader";
 import {makeStyles} from "@material-ui/core/styles";
 import {Button, IconButton, Chip, Fade, LinearProgress } from '@material-ui/core';
 import {ArrowForward, ArrowBack } from '@material-ui/icons';
@@ -16,12 +17,14 @@ const useStyles = makeStyles(styles);
 
 export default function FormContainer({index}){
 
-
+    const [showLoader, setShowLoader] = useState(false);
+    const [buttonVisible, setButtonVisible] = useState(false);
     const [jobs, setJobs] = useState({});
     const [selectedJobs, setJobSelected] = useState({});
     const [stepInfo, setStepInfo] = useState(data.steps[index]);
-    const [languages, setLanguageSelected] = useState([]);
+    const [selectedLanguages, setLanguageSelected] = useState([]);
     const [availability, setDaySelected] = useState(data.days);
+    const [phoneNumber, setPhoneNumber] = useState("+385 ");
     const [info, setInfo] = useState({
         fullName: "",
         city: "",
@@ -38,6 +41,28 @@ export default function FormContainer({index}){
         setUpData();
     },[])
 
+    //validations by page
+
+    useEffect(()=>{
+        index===0&&setButtonVisible(Object.values(selectedJobs).includes(true));
+    },[selectedJobs, index])
+
+/*     useEffect(()=>{
+        index===1&&setButtonVisible(Object.values(selectedLanguages).includes(true));
+    },[selectedLanguages, index]) */
+
+    useEffect(()=>{
+        index===2&&setButtonVisible(Object.values(availability).includes(true));
+    },[availability, index])
+
+    useEffect(()=>{
+        index===3&&setButtonVisible(checkInfoValidity);
+    },[info, index])
+
+    useEffect(()=>{
+        index===4&&setButtonVisible(phoneNumber.length>12);
+    },[phoneNumber, index])
+
     const setUpData = () => {
         let selectedJobs={}, selectedLanguages={};
         Object.keys(data.allJobs).forEach(jobCategory=>data.allJobs[jobCategory].forEach(job=>selectedJobs[job.name]=false));
@@ -51,30 +76,25 @@ export default function FormContainer({index}){
         if(index<5){
             history.push(`/form/${index+1}`);
             setStepInfo(data.steps[index+1]);
-        }else{
-            history.push("/success");
+            return;
         }
-
+        if(index === 4){
+            //posalji broj
+            return;
+        }
+        history.push("/success");
     }
 
     const loadPreviousStep = () => {
         if(index===0){
             history.push("/")
-        }else{
-            history.push(`/form/${index-1}`);
-            setStepInfo(data.steps[index-1]);
         }
+        history.push(`/form/${index-1}`);
+        setStepInfo(data.steps[index-1]);
     }
 
-
-    /* ---Languages Step Functions--- */
-
-    //show language chip if not main language       
-    const showChip = (language) => {
-        if(languages[language]){
-            return !data.mainLanguages.some(item => (item.name===language));
-        };
-        return false;
+    const checkInfoValidity = () => {
+        return !Object.values(info).includes("");
     }
  
     const renderFormStep = () => {
@@ -97,7 +117,7 @@ export default function FormContainer({index}){
                 in={index===1} 
                 timeout={{enter: 800, exit:0}}>
                     <LanguageStep
-                        languages={languages}
+                        languages={selectedLanguages}
                         setLanguageSelected={setLanguageSelected} 
                     />
             </Fade>
@@ -125,13 +145,18 @@ export default function FormContainer({index}){
                 mountOnEnter 
                 unmountOnExit 
                 in={index===4} 
+                setShowLoader={setShowLoader}
                 timeout={{enter: 800, exit:0}}>
-                    <NumberConfirmationStep />
+                    <PhoneNumberStep
+                        phoneNumber={phoneNumber}
+                        setPhoneNumber={setPhoneNumber} />
             </Fade> 
             <Fade
                 mountOnEnter 
                 unmountOnExit 
                 in={index===5} 
+                loadNextStep={loadNextStep}
+                setShowLoader={setShowLoader}
                 timeout={{enter: 800, exit:0}}>
                     <VerificationCodeStep />
             </Fade> 
@@ -139,8 +164,10 @@ export default function FormContainer({index}){
         )
     }
     
+    
     return(
         <div className={classes.formContainer}>
+            {showLoader&&<Loader />}
             <LinearProgress variant="determinate" value={stepInfo.progressPercentage} />
             <div className={classes.formTopSection}>
                 <div className={classes.topDecoration}>
@@ -153,23 +180,14 @@ export default function FormContainer({index}){
             <div className={classes.formContent}> 
                 <div className={classes.formContentInner}>
                     <h2 className={classes.formTitle}>{stepInfo.formTitle}</h2>
-                   {/* <div className={classes.formChips}>
-                         {index===0?
-                            Object.keys(selectedJobs).map(job=>(
-                                selectedJobs[job]?<Chip onDelete={() => setJobSelected(prevState => ({...prevState, [job]:!prevState[job]}))} color="primary" variant="outlined" style={{fontSize: 12, fontWeight: 500, marginRight:6}} label={job} />:null
-                            ))
-                        :index===1?
-                            Object.keys(languages).map(language=>(
-                                showChip(language)?<Chip onDelete={() => setLanguageSelected(prevState => ({...prevState, [language]:!prevState[language]}))} color="primary" variant="outlined" style={{fontSize: 12, fontWeight: 500, marginRight:6}} label={language} />:null
-                            ))
-                        :null} 
-                    </div>*/}
                     <div className={classes.formWrap}>
                         {renderFormStep()}
                     </div>
-                    <div className={classes.formActionsContainer}>
-                        <Button onClick={() => loadNextStep()} className={classes.formButton} variant="contained">{stepInfo.buttonTitle}<ArrowForward className={classes.formButtonIcon} /></Button>
-                    </div>
+                    <Fade timeout={300} in={buttonVisible}>
+                        <div className={classes.formActionsContainer}>
+                            <Button onClick={() => loadNextStep()} className={classes.formButton} variant="contained">{stepInfo.buttonTitle}<ArrowForward className={classes.formButtonIcon} /></Button>
+                        </div>
+                    </Fade>
                 </div>
             </div>
         </div>      
