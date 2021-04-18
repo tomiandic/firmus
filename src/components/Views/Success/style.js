@@ -115,7 +115,7 @@ export default theme => ({
       strokeDasharray: 29,
       strokeDashoffset: 29,
       animation: `$draw 500ms cubic-bezier(.25, .25, .25, 1) forwards`,
-      animationDelay: "1.6s"
+      animationDelay: "1s"
   },
 
   circle: {
@@ -125,7 +125,7 @@ export default theme => ({
       transformOrigin: "center",
       transform: "scale(0)",
       animation: `$grow 1s cubic-bezier(.25, .25, .25, 1.25) forwards`,
-      animationDelay: "1s"
+      animationDelay: "600ms"
   },
 
 "@keyframes grow": {

@@ -10,7 +10,7 @@
     <link type="text/css" rel="stylesheet" href="%PUBLIC_URL%/style.css" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Brzi poslovi u tvom džepu"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
@@ -32,4 +32,10 @@
   <body>
     <div id="root"></div>
   </body>
+  <script>
+    addEventListener("load", function() {
+    var viewport = document.querySelector("meta[name=viewport]");
+    viewport.setAttribute("content", viewport.content + ", height=" + window.innerHeight);
+    })
+  </script>
 </html>

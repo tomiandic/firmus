@@ -47,10 +47,6 @@ export default function FormContainer({index}){
         index===0&&setButtonVisible(Object.values(selectedJobs).includes(true));
     },[selectedJobs, index])
 
-/*     useEffect(()=>{
-        index===1&&setButtonVisible(Object.values(selectedLanguages).includes(true));
-    },[selectedLanguages, index]) */
-
     useEffect(()=>{
         index===2&&setButtonVisible(Object.values(availability).includes(true));
     },[availability, index])
@@ -88,6 +84,7 @@ export default function FormContainer({index}){
     const loadPreviousStep = () => {
         if(index===0){
             history.push("/")
+            return;
         }
         history.push(`/form/${index-1}`);
         setStepInfo(data.steps[index-1]);

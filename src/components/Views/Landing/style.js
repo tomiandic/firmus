@@ -2,10 +2,12 @@
 export default theme => ({
 
 landingContainer:{
-    height: "100vh",
+    minHeight: "100vh",
     position: "relative",
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
+    alignItems: "center",
     overflow:"hidden",
     fontFamily: theme.typography.fontFamily
 },
@@ -35,7 +37,7 @@ gradientDiv: {
    }
 },
 loginDiv:{
-    background: "rgba(0,0,0, 0.2)",
+    background: "rgba(0,0,0, 0.3)",
     height: "100%",
     width: "40%",
     minWidth: 450,
@@ -43,23 +45,21 @@ loginDiv:{
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    position: "absolute",
-    left:0,
-    top:0,
     backdropFilter: "blur(10px)",
     color: "#fff",
+    position: "absolute",
+    left: 0,
+    top: 0,
    [theme.breakpoints.down('xs')]: {
-      bottom: 160,
-      top: "unset",
       padding: 35,
       borderRadius: 25,
       width: "90%",
       minWidth: "unset",
       height: "auto",
       textAlign: "center",
-      left: "50%",
-      transform: "translateX(-50%)", 
       alignItems: "center",
+      position: "relative",
+
    }
 },
 landingTitle:{
@@ -105,6 +105,7 @@ landingLink:{
    textAlign: "center",
    marginLeft: "auto",
    marginRight: "auto",
+   width: 180,
    borderBottom: "1px solid transparent",
    "&:hover":{
    color: theme.palette.primary.main,
@@ -118,13 +119,19 @@ landingLink:{
    }
 },
 landingLogo:{
-   height: 80,
-   width: 80,
-   marginTop: -50,
-   marginBottom: 50,
-   position: "relative",
+   height: 50,
+   zIndex: 10,
+   fill: theme.palette.primary.main,
+   marginBottom: 60,
+   marginRight: "auto", 
    [theme.breakpoints.down('xs')]: {
-      marginTop: "10rem"
+      marginBottom: 150,
+      position: "relative",
+      marginRight: 0,
+      fill: "#fff",
+      ['@media (max-height:580px)']: { 
+         marginBottom: 30
+      }
    }
 }
 }) 

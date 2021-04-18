@@ -19,40 +19,44 @@ export default function Instructions(props) {
                 <IconButton onClick={props.toggleInstructions} className={classes.closeButton}>
                     <CloseIcon fontSize="large" />
                 </IconButton>
+                <div className={classes.swiperInner}>
+
                 <Swiper 
                     pagination={{clickable:true}} 
                     navigation>
 
-                    <SwiperSlide className={classes.slide}>
-                        <img className={classes.slideImage} src={slide1} />
-                        <div className={classes.slideContent}>
-                            <h2 className={classes.instTitle}>Korak 1</h2>
-                            <p className={classes.instText}>
+                        <SwiperSlide className={classes.slide}>
+                            <img className={classes.slideImage} src={slide1} />
+                            <div className={classes.slideContent}>
+                                <h2 className={classes.instTitle}>Korak 1</h2>
+                                <p className={classes.instText}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                                </p>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide className={classes.slide}>
+                            <img className={classes.slideImage} src={slide1} />
+                            <div className={classes.slideContent}>
+                                <h2 className={classes.instTitle}>Korak 2</h2>
+                                <p className={classes.instText}>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                            </p>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide className={classes.slide}>
+                                </p>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide className={classes.slide}>
                         <img className={classes.slideImage} src={slide1} />
                         <div className={classes.slideContent}>
-                            <h2 className={classes.instTitle}>Korak 2</h2>
+                            <h2 className={classes.instTitle}>Korak 3</h2>
                             <p className={classes.instText}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                             </p>
                         </div>
-                    </SwiperSlide>
-                    <SwiperSlide className={classes.slide}>
-                    <img className={classes.slideImage} src={slide1} />
-                    <div className={classes.slideContent}>
-                        <h2 className={classes.instTitle}>Korak 3</h2>
-                        <p className={classes.instText}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                        </p>
-                    </div>
-                    </SwiperSlide>
+                        </SwiperSlide>
                 </Swiper>
+                </div>
+
             </div>)
 }

@@ -4,10 +4,13 @@ export default theme => ({
         background: "#fff",
         height: "100vh",
         width: "100%",
-        position: "absolute",
+        position: "fixed",
         top:0,
         left:0,
         zIndex: 100,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         "& .swiper-pagination-bullet-active":{
             height: 10,
             width: 10
@@ -42,7 +45,11 @@ export default theme => ({
     slideContent:{
         padding: 80,
         paddingLeft: 20,
-        fontSize: 20,
+        fontSize: 15,
+        lineHeight: "30px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
         [theme.breakpoints.down('xs')]: {
             padding: "0 20px",
             marginTop: 30,
@@ -57,6 +64,7 @@ export default theme => ({
         }
     },
     instTitle:{
+
         [theme.breakpoints.down('xs')]: {
             fontSize: 25,
             marginTop: 5
@@ -70,6 +78,12 @@ export default theme => ({
         color: theme.palette.primary.main,
         [theme.breakpoints.down('xs')]: {
             top: 5
+        }
+    },
+    swiperInner:{
+        maxWidth: "1000px",
+        [theme.breakpoints.down('xs')]: {
+            width: "100%",
         }
     }
 

@@ -67,6 +67,7 @@ export default function LanguageStep(props){
         :
         <CircularProgress />}
         <Modal
+            style={{minHeight: "85vh"}}
             open={open}
             closeAfterTransition
             BackdropComponent={Backdrop}
