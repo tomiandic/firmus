@@ -6,6 +6,9 @@ import slide1 from "../../../assets/slide1.svg";
 import CloseIcon from '@material-ui/icons/Close';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 
 SwiperCore.use([Navigation, Pagination]);
 const useStyles = makeStyles(styles);
@@ -20,10 +23,11 @@ export default function Instructions(props) {
                     <CloseIcon fontSize="large" />
                 </IconButton>
                 <div className={classes.swiperInner}>
-
+                <ArrowForwardIcon className={classes.arrowForward} id="swipeRight" />
+                <ArrowBackIcon className={classes.arrowBack} id="swipeLeft" />
                 <Swiper 
                     pagination={{clickable:true}} 
-                    navigation>
+                    navigation={{prevEl: '#swipeLeft', nextEl: '#swipeRight'}}>
 
                         <SwiperSlide className={classes.slide}>
                             <img className={classes.slideImage} src={slide1} />

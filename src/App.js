@@ -3,6 +3,7 @@ import Landing from "./components/Views/Landing";
 import Success from "./components/Views/Success";
 import FormContainer from "./components/Views/FormContainer";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import DesktopForm from "./components/Views/DesktopForm";
 import {MuiThemeProvider} from "@material-ui/core/styles";
 
 import theme from "./theme";
@@ -22,6 +23,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Landing />
+            </Route>
+            <Route exact path="/form">
+              <DesktopForm />
             </Route>
             <Route exact path="/form/0">
               <FormContainer index={0} />

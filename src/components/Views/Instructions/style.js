@@ -58,6 +58,7 @@ export default theme => ({
     },
     instText:{
          color: theme.palette.text.main,
+         marginBottom: 50,
          [theme.breakpoints.down('xs')]: {
             fontSize:14,
             lineHeight: "23px",
@@ -82,9 +83,24 @@ export default theme => ({
     },
     swiperInner:{
         maxWidth: "1000px",
+        position: "relative",
         [theme.breakpoints.down('xs')]: {
             width: "100%",
         }
+    },
+    arrowBack:{
+        position: "absolute",
+        left:0,
+        top: "50%",
+        zIndex: 10,
+        fill: theme.palette.primary.main
+    },
+    arrowForward:{
+        position: "absolute",
+        right:0,
+        top: "50%",
+        zIndex: 10,
+        fill: theme.palette.primary.main
     }
 
 })
