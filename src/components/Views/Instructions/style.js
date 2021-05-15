@@ -32,14 +32,15 @@ export default theme => ({
         }
     },
     slideImage:{
-        background: "#F6F9FE",
         borderRadius: 20,
         minWidth: "40%",
         height: "80vh",
         margin: "7vh",
         [theme.breakpoints.down('xs')]: {
             height: "40vh",
-            margin: "70px 20px 0 20px"
+            margin: "70px 20px 0 20px",
+            background: "#F6F9FE",
+            padding: 20
         }
     },
     slideContent:{
@@ -76,13 +77,12 @@ export default theme => ({
         top: 10,
         right: 10,
         zIndex: 10,
-        color: theme.palette.primary.main,
         [theme.breakpoints.down('xs')]: {
             top: 5
         }
     },
     swiperInner:{
-        maxWidth: "1000px",
+        maxWidth: "1200px",
         position: "relative",
         [theme.breakpoints.down('xs')]: {
             width: "100%",
@@ -93,14 +93,16 @@ export default theme => ({
         left:0,
         top: "50%",
         zIndex: 10,
+        cursor: "pointer",
         fill: theme.palette.primary.main
     },
     arrowForward:{
         position: "absolute",
         right:0,
         top: "50%",
+        cursor: "pointer",
         zIndex: 10,
         fill: theme.palette.primary.main
-    }
+    },
 
 })

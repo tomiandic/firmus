@@ -41,7 +41,7 @@ export default function Success() {
                         <Step>
                             <StepLabel className={classes.stepperLabel}>Sljedeći korak</StepLabel>
                             <StepContent className={classes.stepperContent}>
-                                Lorem ipsum dolor sit amet, consectetr adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
+                            Nakon registracije, možeš se opustiti. Firmus će ti pomoći pronaći idealan posao. Analizirat ćemo podatke o tvojim interesima, vještinama i dostupnosti, a zatim te matchati s poslodavcem koji upravo tebi najbolje odgovara.
                             </StepContent>
                         </Step> 
                 </Stepper>
