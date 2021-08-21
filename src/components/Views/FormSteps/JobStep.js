@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     AccordionSummary,
@@ -13,11 +13,17 @@ const useStyles = makeStyles(styles);
 
  
 export default function JobStep(props){
+    const {jobs, selectedJobs, setJobSelected, setButtonVisible, setSelectCount} = props;
 
-    const selectJob = (e) =>{setJobSelected(prevState => ({...prevState, [e.target.name]:e.target.checked}))};
+    useEffect(() => {
+        let jobSelectedCount = Object.values(selectedJobs).filter((x) => x === true).length;
+        setButtonVisible(jobSelectedCount > 0);
+        setSelectCount(jobSelectedCount); 
+    }, [selectedJobs])
 
+
+    const selectJob = (e) => {setJobSelected(prevState => ({...prevState, [e.target.name]:e.target.checked}))};
     const classes = useStyles();
-    const {jobs, selectedJobs, setJobSelected} = props;
     return(
         <div style={{...props.style}}>
             {Object.keys(jobs).map(jobCategory => (

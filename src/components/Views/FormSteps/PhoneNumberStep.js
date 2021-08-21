@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {TextField, makeStyles, InputLabel} from '@material-ui/core';
 import phoneIllustration from '../../../assets/PhoneIllustration.svg';
 import styles from "../FormContainer/style.js";
@@ -7,6 +7,10 @@ const useStyles = makeStyles(styles);
 
 
 export default function PhoneNumberStep(props){
+
+    useEffect(() => {
+        props.setButtonVisible(props.phoneNumber.length > 12);
+    }, [props.phoneNumber])
 
     const handleInputChange = (e) => {
         const {value} = e.target;

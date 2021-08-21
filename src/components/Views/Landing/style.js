@@ -18,7 +18,6 @@ stretchedImg:{
     position: "absolute",
     top:0,
     left:0,
-    transform: "scaleX(-1)",
    [theme.breakpoints.down('xs')]: {
       transform: "scale(1.3)",
       objectFit: "cover",
@@ -26,14 +25,14 @@ stretchedImg:{
    }
 },
 gradientDiv: {
-    background: "linear-gradient(to right, #000000c9, transparent)",
+    background: "linear-gradient(25deg, transparent, #000000c9)",
     height: "100%",
     width: "100%",
     position: "absolute",
     top:0,
     left:0,
    [theme.breakpoints.down('xs')]: {
-      background: "linear-gradient(to top, #000000c9, transparent)",
+      background: "linear-gradient(to top, transparent, #000000c9)",
    }
 },
 loginDiv:{
@@ -48,7 +47,7 @@ loginDiv:{
     backdropFilter: "blur(10px)",
     color: "#fff",
     position: "absolute",
-    left: 0,
+    right: 0,
     top: 0,
    [theme.breakpoints.down('xs')]: {
       padding: 35,
@@ -63,7 +62,7 @@ loginDiv:{
    }
 },
 landingTitle:{
-   fontSize: 25,
+   fontSize: 35,
    [theme.breakpoints.down('xs')]: {
       fontSize: 22
    },
@@ -119,19 +118,33 @@ landingLink:{
    }
 },
 landingLogo:{
-   height: 50,
+   height: 45,
    zIndex: 10,
+   "-webkit-filter": "drop-shadow(12px 12px 25px rgba(0,0,0,0.8))",
    fill: theme.palette.primary.main,
-   marginBottom: 60,
-   marginRight: "auto", 
+   position: "absolute",
+   top: 35,
+   left: 45,
    [theme.breakpoints.down('xs')]: {
       marginBottom: 150,
       position: "relative",
       marginRight: 0,
+      left: 0,
       fill: "#fff",
       ['@media (max-height:580px)']: { 
          marginBottom: 30
       }
    }
+},
+landingSecondaryText: {
+   fontSize: 12,
+   color: "#c0c0c0",
+   "& a":{
+      color: theme.palette.primary.light,
+      cursor: "pointer",
+      marginLeft: 5,
+      fontWeight: 500
+   }
 }
+
 }) 

@@ -140,31 +140,38 @@
             "formTitle":"Odaberite jezik/e putem kojih se uspješno sporazumijevate.",
             "buttonTitle": "Nastavi",
             "stepInfo": "Unesene podatke u ovoj formi moguće je naknadno ažurirati",
-            "progressPercentage": 20
+            "progressPercentage": 15
         },
         {
             "step":2,
             "formTitle":"Odaberite dane u tjednu tijekom kojih ste slobodni za rad.",
             "buttonTitle": "Nastavi",
             "stepInfo": "",
-            "progressPercentage": 40
+            "progressPercentage": 30
         },
         {
             "step":3,
             "formTitle":"Unesite osnovne informacije o sebi",
             "buttonTitle": "Nastavi",
             "stepInfo": "",
-            "progressPercentage": 60
+            "progressPercentage": 45
         },
         {
             "step":4,
+            "formTitle":"Unesite podatke za prijavu",
+            "buttonTitle": "Nastavi",
+            "stepInfo": "",
+            "progressPercentage": 70
+        },
+        {
+            "step":5,
             "formTitle":"Unesite broj telefona na koji ćemo vam poslati verifikacijski kod",
             "buttonTitle": "Pošalji",
             "stepInfo": "",
             "progressPercentage": 85
         },
         {
-            "step":5,
+            "step":6,
             "formTitle":"Unesite verifikacijski kod koji ste primili putem SMS poruke",
             "buttonTitle": "Završi registraciju",
             "stepInfo": "",
@@ -394,13 +401,13 @@
 
     "days": 
         {
-        "Pon":false, 
-         "Uto":false, 
-         "Sri":false, 
-         "Čet":false, 
-         "Pet":false, 
-         "Sub":false, 
-         "Ned":false
+        "Pon":null, 
+         "Uto":null, 
+         "Sri":null, 
+         "Čet":null, 
+         "Pet":null, 
+         "Sub":null, 
+         "Ned":null
         }, 
 
     "cities":[

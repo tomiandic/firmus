@@ -45,7 +45,16 @@ export default function Success() {
                             </StepContent>
                         </Step> 
                 </Stepper>
+                {matches&&
+                <div className={classes.socialMediaContainer}>
+                    <a href=""><FacebookIcon /></a>
+                    <a href=""><WhatsAppIcon /></a>
+                    <a href=""><MailIcon /></a>
+                    <a href=""><WhatshotIcon /></a>
+                </div>
+                }
             </div>
+            {!matches&&
             <div className={classes.socialMediaContainer}>
                 <p>Preporuči Firmus prijateljima!</p>
                 <a href=""><FacebookIcon /></a>
@@ -53,6 +62,7 @@ export default function Success() {
                 <a href=""><MailIcon /></a>
                 <a href=""><WhatshotIcon /></a>
             </div>
+            }
         </div>
     )
 } 

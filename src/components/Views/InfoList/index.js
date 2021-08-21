@@ -17,7 +17,7 @@ export default function InfoList(props) {
         </div>
         <List>
         {props.list&&props.list.map(item => 
-            <ListItem className={classes.infoItem}>
+            <ListItem key={item} className={classes.infoItem}>
                 {item}
             </ListItem>
         )}

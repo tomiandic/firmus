@@ -54,6 +54,17 @@ export default function BasicInfoStep(props) {
   const [locationError, setLocationError] = useState(null);
   const [pickedCity, setPickedCity] = useState(null);
 
+  const { setInfo, info, setButtonVisible } = props;
+
+  useEffect(() => {
+    setButtonVisible(checkInfoValidity);
+  }, [info])
+
+  //TODO: validate.js ili slicni plugin
+  const checkInfoValidity = () => {
+    return !Object.values(info).includes("");
+  };
+
   const handleDatePickerOpen = () => {
     setDatePickerOpen(true);
   };
@@ -72,7 +83,7 @@ export default function BasicInfoStep(props) {
   };
 
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setInfo((prevState) => ({ ...prevState, [name]: value }));
   };
 
@@ -134,8 +145,6 @@ export default function BasicInfoStep(props) {
     setOpenLocationFeedback(false);
     setOpenCityList(false);
   };
-
-  const { setInfo, info } = props;
 
   const rowRenderer = ({ index, isScrolling, isVisible, key, parent, style }) => {
     const filteredCities = data.cities.filter(filterCities);
@@ -230,7 +239,7 @@ export default function BasicInfoStep(props) {
         )}
       </div>
 
-      <div style={{ minWidth: "100%" }} className={classes.inputContainer}>
+      {/* <div style={{ minWidth: "100%" }} className={classes.inputContainer}>
         <InputLabel className={classes.inputLabel}>Email adresa*</InputLabel>
         <TextField
           name="mail"
@@ -239,8 +248,8 @@ export default function BasicInfoStep(props) {
           className={classes.infoInput}
           variant="filled"
         />
-      </div>
-      <div className={classes.inputContainer}>
+      </div> */}
+      <div style={{minWidth: "100%"}} className={classes.inputContainer}>
         <InputLabel className={classes.inputLabel}>Spol*</InputLabel>
 
         <div className={classes.pickerContainer}>
@@ -382,7 +391,7 @@ export default function BasicInfoStep(props) {
               )}
             </div>
             <div className={classes.modalActionContainer}>
-              <Button variant="contained" onClick={() => handlePickedCitySave()} className={classes.formButton}>
+              <Button color="primary" variant="contained" onClick={() => handlePickedCitySave()} className={classes.formButton}>
                 Spremi
               </Button>
             </div>
@@ -405,7 +414,7 @@ export default function BasicInfoStep(props) {
                   <br /> <br />
                   <p>Tvoja lokacija je:</p>
                   <h1>{currentLocation}</h1>
-                  <Button variant="contained" onClick={() => savePosition()} className={classes.formButton}>
+                  <Button color="primary" variant="contained" onClick={() => savePosition()} className={classes.formButton}>
                     Postavi kao moju lokaciju
                   </Button>
                   <a onClick={() => setOpenLocationFeedback(false)} className={classes.subLink}>

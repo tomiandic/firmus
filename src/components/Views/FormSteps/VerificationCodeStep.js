@@ -12,6 +12,7 @@ export default function VerificationCodeStep(props){
     const itemEls = useRef(new Array());
 
     useEffect(()=>{
+        props.setButtonVisible(false);
         itemEls.current[0].focus(); 
     }, [])
 
@@ -29,6 +30,7 @@ export default function VerificationCodeStep(props){
         }else{
             e.target.blur();
             props.setShowLoader(true);
+            //mock upload
             setTimeout(
                 () => {
                     props.setShowLoader(false);

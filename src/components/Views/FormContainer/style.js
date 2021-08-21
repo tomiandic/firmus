@@ -9,7 +9,7 @@ export default (theme) => ({
     overflow: "auto",
   },
   formTopSection: {
-    height: 90,
+    minHeight: 90,
     display: "table",
   },
   formContent: {
@@ -453,5 +453,48 @@ export default (theme) => ({
     color: "#fff",
     marginRight: 8,
     cursor: "pointer"
+  },
+  separator: {
+    display: "flex",
+    alignItems: "center",
+    textAlign: "center",
+    minWidth: "100%",
+    color: "lightgray",
+    padding: "30px 0",
+    "&:before":{
+      content: '""',
+      flex: 1,
+      borderBottom: `1px solid lightgray`
+    },
+    "&:after":{
+      content: '""',
+      flex: 1,
+      borderBottom: `1px solid lightgray`
+    },
+    "&:not(:empty)::after":{
+      marginLeft: 15
+    },
+    "&:not(:empty)::before":{
+      marginRight: 15
+    }
+  },
+  socialButton: {
+    color: "#fff",
+    padding: "8px 20px",
+    marginRight: 10
+  },
+  socialMediaLogin: {
+    borderRadius: 10,
+    marginTop: 30,
+    border: `1px solid lightgray`,
+    padding: 20,
+    width: "100%",
+    "&>p":{
+      fontSize: 12,
+      fontWeight: 500,
+      marginTop: -5
+    }
   }
+
+  
 });

@@ -96,6 +96,8 @@ export default theme => ({
        textAlign: "center",
        fontSize: 12,
        color:"#fff",
+       left: "50%",
+       transform: "translatex(-50%)",
        "& p":{
           minWidth: "100%"
        },

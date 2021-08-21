@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ListOption from "../../UI/ListOption";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { List as VirtualList } from "react-virtualized";
@@ -28,13 +28,20 @@ export default function LanguageStep(props) {
   const [filterValue, setFilterValue] = useState("");
   const [selectedLanguages, setSelectedLanguages] = useState([]);
 
+  const { setSelectCount, setButtonVisible, setLanguageSelected, languages } = props;
+
+  useEffect(() => {
+    let langSelectedCount = Object.values(languages).filter((x) => x === true).length;
+    setSelectCount(langSelectedCount);
+    setButtonVisible(true);
+  }, [languages]);
+
   const images = require.context("../../../assets", true);
   const loadImage = (imageName) => images(`./${imageName}`).default;
 
   const theme = useTheme();
   //true if not mobile
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
-
   const classes = useStyles();
 
   const selectLanguage = (e) => {
@@ -50,14 +57,12 @@ export default function LanguageStep(props) {
       prevState[name] = !prevState[name];
     });
     setLanguageSelected(prevState);
-    setSelectedLanguages([]);
   };
 
   const filterLanguages = (language) => {
     return language.toLowerCase().includes(filterValue);
   };
 
-  const { setLanguageSelected, languages } = props;
   function rowRenderer({ index, isScrolling, isVisible, key, style }) {
     const filteredLanguages = Object.keys(languages).filter(filterLanguages);
     const language = filteredLanguages[index];
@@ -139,6 +144,7 @@ export default function LanguageStep(props) {
                 filterSelectedOptions
                 onChange={(event, value) => setSelectedLanguages(value)}
                 renderInput={(params) => <TextField {...params} variant="filled" />}
+                value={selectedLanguages}
               />
               <br />
               <Button
@@ -146,6 +152,7 @@ export default function LanguageStep(props) {
                 variant="contained"
                 onClick={() => saveSelectedLanguages()}
                 className={classes.formButton}
+                color="primary"
               >
                 Spremi
               </Button>
@@ -190,7 +197,7 @@ export default function LanguageStep(props) {
                 )}
               </div>
               <div className={classes.modalActionContainer}>
-                <Button variant="contained" onClick={() => setOpen(false)} className={classes.formButton}>
+                <Button color="primary" variant="contained" onClick={() => setOpen(false)} className={classes.formButton}>
                   Spremi
                 </Button>
               </div>

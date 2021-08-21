@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {makeStyles, ListItem, Checkbox, Radio} from "@material-ui/core";
 import styles from "./style.js";
 
@@ -33,4 +33,8 @@ function ListOption(props){
 }
 
 
-   export default ListOption;  
+   export default memo(ListOption, (prevProps, nextProps) => {
+       console.log("PRIJE:", prevProps);
+       console.log("POSLE:", nextProps);
+    return !(prevProps.optionChecked !== nextProps.optionChecked);
+   });  

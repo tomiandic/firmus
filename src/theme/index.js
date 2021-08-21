@@ -42,15 +42,26 @@ const theme = createMuiTheme({
     },
 
     MuiButton: {
-      contained: {
+      root:{
         padding: "15px 25px",
+        borderRadius: 17
+      },
+      containedPrimary: {
         color: "#fff",
-        borderRadius: 17,
         backgroundColor: "#1479EC",
         boxShadow: "0 5px 25px 2px #0077ff44",
         "&:hover": {
-          backgroundColor: "#1479EC!important",
-          boxShadow: "0 5px 25px 2px #0077ff5d!important",
+          backgroundColor: "#0077ff",
+          boxShadow: "0 5px 25px 2px #0077ff5d",
+        },
+      },
+      containedSecondary: {
+        color: "#fff",
+        backgroundColor: "#1479EC",
+        boxShadow: "0 5px 25px 2px #0077ff44",
+        "&:hover": {
+          backgroundColor: "#0077ff",
+          boxShadow: "0 5px 25px 2px #0077ff5d",
         },
       },
     },
