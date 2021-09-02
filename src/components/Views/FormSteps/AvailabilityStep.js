@@ -1,24 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Dialog, DialogTitle, DialogContent, Slider, Button, DialogActions } from "@material-ui/core";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Slider,
+  Button,
+  DialogActions,
+} from "@material-ui/core";
+//redux
+import { useDispatch, useSelector } from "react-redux";
+import { updateProfile } from "../../../redux/reducers/userProfileSlice";
+
 import styles from "../FormContainer/style.js";
 const useStyles = makeStyles(styles);
 
 export default function AvailabilityStep(props) {
-  const { days, setDaySelected } = props;
   const [activeDay, setActiveDay] = useState(null);
   const [activeDayTime, setActiveDayTime] = useState([10, 18]);
+  const dispatch = useDispatch();
+  const days = useSelector((state) => state.userProfile.availability);
 
   useEffect(() => {
-    props.setButtonVisible(Object.values(days).some(el => el !== null));
+    props.setButtonVisible(Object.values(days).some((el) => el !== null));
   }, [days]);
 
   const selectDay = (e, name) => {
-    days[name]?setDaySelected((prevState) => ({ ...prevState, [name]: null })):setActiveDay(name);
+    days[name]
+      ? dispatch(
+          updateProfile({
+            property: "availability",
+            value: { [name]: null },
+          })
+        )
+      : setActiveDay(name);
   };
 
   const saveSelectedTime = () => {
-    setDaySelected((prevState) => ({ ...prevState, [activeDay]: activeDayTime }), setTimeout(() => setActiveDayTime([10, 18]), 500));
+    dispatch(
+      updateProfile({
+        property: "availability",
+        value: { [activeDay]: activeDayTime },
+      })
+    );
+    setTimeout(() => setActiveDayTime([10, 18]), 500);
     setActiveDay(null);
   };
 
@@ -58,7 +83,11 @@ export default function AvailabilityStep(props) {
       {Object.keys(days).map((day) => (
         <div
           key={day}
-          className={days[day] ? `${classes.buttonPicker} ${classes.buttonPickerActive}` : classes.buttonPicker}
+          className={
+            days[day]
+              ? `${classes.buttonPicker} ${classes.buttonPickerActive}`
+              : classes.buttonPicker
+          }
         >
           <input
             className={classes.buttonPickerInput}
@@ -81,6 +110,9 @@ export default function AvailabilityStep(props) {
           <label htmlFor={day} className={classes.buttonPickerLabel}>
             <span className={classes.buttonPickerTitleBig}>{day}</span>
           </label>
+          {days[day] && (
+            <div className={classes.badge}>{days[day].join(" - ")}</div>
+          )}
         </div>
       ))}
       <Dialog open={activeDay ? true : false}>

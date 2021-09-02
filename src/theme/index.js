@@ -13,7 +13,7 @@ const theme = createMuiTheme({
       input: "#B8C0C8",
     },
     secondary: {
-      main: "#FFC60A"
+      main: "#FFC60A",
     },
     text: {
       main: "#263448",
@@ -42,9 +42,9 @@ const theme = createMuiTheme({
     },
 
     MuiButton: {
-      root:{
+      root: {
         padding: "15px 25px",
-        borderRadius: 17
+        borderRadius: 17,
       },
       containedPrimary: {
         color: "#fff",
@@ -94,6 +94,11 @@ const theme = createMuiTheme({
         border: "none",
         background: "white!important",
         marginBottom: "10px!important",
+      },
+    },
+    MuiPaper: {
+      rounded: {
+        borderRadius: "20px",
       },
     },
   },

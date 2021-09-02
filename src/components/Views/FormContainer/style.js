@@ -50,7 +50,7 @@ export default (theme) => ({
       fontWeight: "200",
     },
     "& div": {
-      fontSize: 16, 
+      fontSize: 16,
     },
     "&.Mui-expanded": {
       borderBottom: `2px solid ${theme.palette.primary.main}`,
@@ -90,7 +90,19 @@ export default (theme) => ({
       paddingBottom: 150,
     },
   },
-
+  badge: {
+    background: theme.palette.primary.main,
+    borderRadius: 15,
+    position: "absolute",
+    bottom: 5,
+    left: "50%",
+    transform: "translateX(-50%)",
+    fontSize: 11,
+    padding: "2px 5px",
+    color: "#fff",
+    fontWeight: 500,
+    whiteSpace: "nowrap",
+  },
   scrollBar: {
     height: "100%",
   },
@@ -103,7 +115,8 @@ export default (theme) => ({
     right: 20,
   },
   formActionsContainer: {
-    background: "linear-gradient(to top, white, white, white, transparent, transparent)",
+    background:
+      "linear-gradient(to top, white, white, white, transparent, transparent)",
     bottom: 0,
     left: 0,
     padding: "65px 20px 35px 20px",
@@ -173,7 +186,7 @@ export default (theme) => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    height: "95px"
+    height: "95px",
   },
   buttonPickerTitle: {
     color: theme.palette.text.light,
@@ -360,7 +373,7 @@ export default (theme) => ({
       border: `2px solid ${theme.palette.primary.main}`,
     },
   },
-  badge: {
+  /*   badge: {
     background: "red",
     height: 20,
     width: 20,
@@ -368,7 +381,7 @@ export default (theme) => ({
     position: "absolute",
     top: 5,
     right: 5,
-  },
+  }, */
   jobIcon: {
     background: "#ebf3ff",
     display: "flex",
@@ -452,7 +465,7 @@ export default (theme) => ({
     fontSize: 20,
     color: "#fff",
     marginRight: 8,
-    cursor: "pointer"
+    cursor: "pointer",
   },
   separator: {
     display: "flex",
@@ -460,41 +473,38 @@ export default (theme) => ({
     textAlign: "center",
     minWidth: "100%",
     color: "lightgray",
-    padding: "30px 0",
-    "&:before":{
+    padding: "20px 0",
+    "&:before": {
       content: '""',
       flex: 1,
-      borderBottom: `1px solid lightgray`
+      borderBottom: `1px solid lightgray`,
     },
-    "&:after":{
+    "&:after": {
       content: '""',
       flex: 1,
-      borderBottom: `1px solid lightgray`
+      borderBottom: `1px solid lightgray`,
     },
-    "&:not(:empty)::after":{
-      marginLeft: 15
+    "&:not(:empty)::after": {
+      marginLeft: 15,
     },
-    "&:not(:empty)::before":{
-      marginRight: 15
-    }
+    "&:not(:empty)::before": {
+      marginRight: 15,
+    },
   },
   socialButton: {
     color: "#fff",
-    padding: "8px 20px",
-    marginRight: 10
+    padding: "6px 15px",
+    marginRight: 10,
+    marginTop: 10,
+    fontSize: 11,
   },
   socialMediaLogin: {
-    borderRadius: 10,
-    marginTop: 30,
-    border: `1px solid lightgray`,
-    padding: 20,
+    marginTop: 20,
+    padding: 5,
     width: "100%",
-    "&>p":{
-      fontSize: 12,
+    "&>p": {
+      fontSize: 11,
       fontWeight: 500,
-      marginTop: -5
-    }
-  }
-
-  
+    },
+  },
 });
