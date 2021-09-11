@@ -6,9 +6,7 @@ import FormContainer from "./components/Views/FormContainer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import initFacebookSdk from "./helpers/initFacebookSdk";
-
 import theme from "./theme";
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 initFacebookSdk();
@@ -23,10 +21,10 @@ function App() {
             <Landing />
           </Route>
           <Route exact path="/login">
-            <Login/>
+            <Login />
           </Route>
           <Route exact path="/registracija">
-            <FormContainer/>
+            <FormContainer />
           </Route>
           <Route path="/success">
             <Success />

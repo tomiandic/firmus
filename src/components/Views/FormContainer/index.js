@@ -33,18 +33,6 @@ export default function FormContainer() {
   const [availability, setDaySelected] = useState(data.days);
   const [phoneNumber, setPhoneNumber] = useState("+385 ");
   const [index, setIndex] = useState(0);
-  const [info, setInfo] = useState({
-    fullName: "",
-    city: "", 
-    date: new Date("1999-01-01"),
-    genre: "F",
-    gdpr: false,
-  });
-  const [credentials, setCredentials] = useState({
-    mail: "",
-    password: "",
-  });
-
   const classes = useStyles();
   const history = useHistory();
   const theme = useTheme();
@@ -113,10 +101,10 @@ export default function FormContainer() {
           <AvailabilityStep setButtonVisible={setButtonVisible} days={availability} setDaySelected={setDaySelected} />
         </Fade>
         <Fade mountOnEnter unmountOnExit in={index === 3} timeout={{ enter: 800, exit: 0 }}>
-          <BasicInfoStep setButtonVisible={setButtonVisible} info={info} setInfo={setInfo} />
+          <BasicInfoStep setButtonVisible={setButtonVisible} />
         </Fade>
         <Fade mountOnEnter unmountOnExit in={index === 4} timeout={{ enter: 800, exit: 0 }}>
-          <CredentialsStep setButtonVisible={setButtonVisible} info={credentials} setInfo={setCredentials} />
+          <CredentialsStep setButtonVisible={setButtonVisible} />
         </Fade>
         <Fade
           mountOnEnter

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ListOption from "../../UI/ListOption";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { List as VirtualList } from "react-virtualized";
+import { observer } from "mobx-react";
 import {
   makeStyles,
   IconButton,
@@ -20,21 +21,33 @@ import AddIcon from "@material-ui/icons/Add";
 import data from "../../../data/data.json";
 import noResultsIcon from "./../../../assets/NoResultsIcon.svg";
 import { ArrowBack } from "@material-ui/icons";
+import UserProfileStore from "../../../store/UserProfileStore";
 
 const useStyles = makeStyles(styles);
 
-export default function LanguageStep(props) {
+const LanguageStep = observer((props) => {
   const [open, setOpen] = useState(false);
   const [filterValue, setFilterValue] = useState("");
   const [selectedLanguages, setSelectedLanguages] = useState([]);
 
-  const { setSelectCount, setButtonVisible, setLanguageSelected, languages } = props;
+  const { setSelectCount, setButtonVisible, setLanguageSelected } = props;
+  const languages = UserProfileStore.selectedLanguages;
 
   useEffect(() => {
-    let langSelectedCount = Object.values(languages).filter((x) => x === true).length;
+    let langSelectedCount = Object.values(languages).filter(
+      (x) => x === true
+    ).length;
     setSelectCount(langSelectedCount);
     setButtonVisible(true);
   }, [languages]);
+
+  useEffect(() => {
+    let languages = data.additionalLanguages.reduce(
+      (res, item, idx) => Object.assign(res, { [item.name]: false }),
+      {}
+    );
+    UserProfileStore.setProfile(languages, "selectedLanguages");
+  }, []);
 
   const images = require.context("../../../assets", true);
   const loadImage = (imageName) => images(`./${imageName}`).default;
@@ -45,9 +58,11 @@ export default function LanguageStep(props) {
   const classes = useStyles();
 
   const selectLanguage = (e) => {
-    let prevState = { ...languages };
-    prevState[e.target.name] = !prevState[e.target.name];
-    setLanguageSelected(prevState);
+    let prevState = { ...UserProfileStore.selectedLanguages };
+    UserProfileStore.setProfile(
+      { [e.target.name]: !prevState[e.target.name] },
+      "selectedLanguages"
+    );
   };
 
   const saveSelectedLanguages = () => {
@@ -81,7 +96,7 @@ export default function LanguageStep(props) {
 
   return (
     <>
-      {Object.keys(languages).length !== 0 ? (
+      {Object.keys(UserProfileStore.selectedLanguages).length !== 0 ? (
         <div style={{ ...props.style }} className={classes.pickerContainer}>
           {data.mainLanguages.map((language) => (
             <div
@@ -101,7 +116,10 @@ export default function LanguageStep(props) {
                 onChange={(e) => selectLanguage(e)}
                 checked={languages[language.name]}
               />
-              <svg className={classes.buttonPickerCheck} viewBox="0 0 48.89 48.89">
+              <svg
+                className={classes.buttonPickerCheck}
+                viewBox="0 0 48.89 48.89"
+              >
                 <circle cx="24.45" cy="24.45" r="24.45" fill="#d9e4f4"></circle>
                 <polyline
                   points="10.26 25.54 21.14 35.45 38.63 13.44"
@@ -111,9 +129,17 @@ export default function LanguageStep(props) {
                   strokeWidth="7"
                 ></polyline>
               </svg>
-              <label htmlFor={language.name} className={classes.buttonPickerLabel}>
-                <img className={classes.buttonPickerIcon} src={loadImage(language.iconFilename)} />
-                <span className={classes.buttonPickerTitle}>{language.name}</span>
+              <label
+                htmlFor={language.name}
+                className={classes.buttonPickerLabel}
+              >
+                <img
+                  className={classes.buttonPickerIcon}
+                  src={loadImage(language.iconFilename)}
+                />
+                <span className={classes.buttonPickerTitle}>
+                  {language.name}
+                </span>
               </label>
             </div>
           ))}
@@ -143,7 +169,9 @@ export default function LanguageStep(props) {
                 getOptionLabel={(option) => option}
                 filterSelectedOptions
                 onChange={(event, value) => setSelectedLanguages(value)}
-                renderInput={(params) => <TextField {...params} variant="filled" />}
+                renderInput={(params) => (
+                  <TextField {...params} variant="filled" />
+                )}
                 value={selectedLanguages}
               />
               <br />
@@ -160,7 +188,11 @@ export default function LanguageStep(props) {
           ) : (
             <Paper className={classes.modalContainer}>
               <div className={classes.modalTopActions}>
-                <IconButton onClick={() => setOpen(false)} color="primary" style={{ marginLeft: -10 }}>
+                <IconButton
+                  onClick={() => setOpen(false)}
+                  color="primary"
+                  style={{ marginLeft: -10 }}
+                >
                   <ArrowBack />
                 </IconButton>
                 <TextField
@@ -197,7 +229,12 @@ export default function LanguageStep(props) {
                 )}
               </div>
               <div className={classes.modalActionContainer}>
-                <Button color="primary" variant="contained" onClick={() => setOpen(false)} className={classes.formButton}>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  onClick={() => setOpen(false)}
+                  className={classes.formButton}
+                >
                   Spremi
                 </Button>
               </div>
@@ -207,4 +244,6 @@ export default function LanguageStep(props) {
       </Modal>
     </>
   );
-}
+});
+
+export default LanguageStep;
