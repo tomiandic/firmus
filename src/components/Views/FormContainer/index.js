@@ -13,7 +13,14 @@ import InfoList from "../InfoList";
 import Loader from "../../UI/Loader";
 //MUI
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, IconButton, Fade, LinearProgress, useMediaQuery, useTheme } from "@material-ui/core";
+import {
+  Button,
+  IconButton,
+  Fade,
+  LinearProgress,
+  useMediaQuery,
+  useTheme,
+} from "@material-ui/core";
 import { ArrowForward, ArrowBack } from "@material-ui/icons";
 //misc
 import styles from "./style.js";
@@ -27,23 +34,9 @@ export default function FormContainer() {
   const [showList, setShowList] = useState(false);
   const [buttonVisible, setButtonVisible] = useState(false);
   const [jobs, setJobs] = useState({});
-  const [selectedJobs, setJobSelected] = useState({});
-  const [selectedLanguages, setLanguageSelected] = useState({});
   const [stepInfo, setStepInfo] = useState(null);
-  const [availability, setDaySelected] = useState(data.days);
   const [phoneNumber, setPhoneNumber] = useState("+385 ");
   const [index, setIndex] = useState(0);
-  const [info, setInfo] = useState({
-    fullName: "",
-    city: "", 
-    date: new Date("1999-01-01"),
-    genre: "F",
-    gdpr: false,
-  });
-  const [credentials, setCredentials] = useState({
-    mail: "",
-    password: "",
-  });
 
   const classes = useStyles();
   const history = useHistory();
@@ -51,25 +44,13 @@ export default function FormContainer() {
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   useEffect(() => {
-    setUpData();
-    setStepInfo(data.steps[index], setShowLoader(false))
-  }, []);
-
-  const setUpData = () => {
-    let selectedJobs = {},
-      selectedLanguages = {};
-    Object.keys(data.allJobs).forEach((jobCategory) =>
-      data.allJobs[jobCategory].forEach((job) => (selectedJobs[job.name] = false))
-    );
-    data.additionalLanguages.forEach((language) => (selectedLanguages[language.name] = false));
+    setStepInfo(data.steps[index], setShowLoader(false));
     setJobs(data.allJobs);
-    setJobSelected(selectedJobs);
-    setLanguageSelected(selectedLanguages);
-  };
+  }, []);
 
   const loadNextStep = () => {
     if (index < 6) {
-      setIndex(index+1);
+      setIndex(index + 1);
       setStepInfo(data.steps[index + 1]);
       return;
     }
@@ -85,38 +66,59 @@ export default function FormContainer() {
       history.push("/");
       return;
     }
-    setIndex(index-1);
+    setIndex(index - 1);
     setStepInfo(data.steps[index - 1]);
   };
 
   const renderFormStep = () => {
     return (
       <>
-        <Fade mountOnEnter unmountOnExit in={index === 0} timeout={{ enter: 800, exit: 0 }}>
+        <Fade
+          mountOnEnter
+          unmountOnExit
+          in={index === 0}
+          timeout={{ enter: 800, exit: 0 }}
+        >
           <JobStep
             setSelectCount={setSelectCount}
             setButtonVisible={setButtonVisible}
             jobs={jobs}
-            selectedJobs={selectedJobs}
-            setJobSelected={setJobSelected}
           />
         </Fade>
-        <Fade mountOnEnter unmountOnExit in={index === 1} timeout={{ enter: 800, exit: 0 }}>
+        <Fade
+          mountOnEnter
+          unmountOnExit
+          in={index === 1}
+          timeout={{ enter: 800, exit: 0 }}
+        >
           <LanguageStep
             setSelectCount={setSelectCount}
             setButtonVisible={setButtonVisible}
-            languages={selectedLanguages}
-            setLanguageSelected={setLanguageSelected}
           />
         </Fade>
-        <Fade mountOnEnter unmountOnExit in={index === 2} timeout={{ enter: 800, exit: 0 }}>
-          <AvailabilityStep setButtonVisible={setButtonVisible} days={availability} setDaySelected={setDaySelected} />
+        <Fade
+          mountOnEnter
+          unmountOnExit
+          in={index === 2}
+          timeout={{ enter: 800, exit: 0 }}
+        >
+          <AvailabilityStep setButtonVisible={setButtonVisible} />
         </Fade>
-        <Fade mountOnEnter unmountOnExit in={index === 3} timeout={{ enter: 800, exit: 0 }}>
-          <BasicInfoStep setButtonVisible={setButtonVisible} info={info} setInfo={setInfo} />
+        <Fade
+          mountOnEnter
+          unmountOnExit
+          in={index === 3}
+          timeout={{ enter: 800, exit: 0 }}
+        >
+          <BasicInfoStep setButtonVisible={setButtonVisible} />
         </Fade>
-        <Fade mountOnEnter unmountOnExit in={index === 4} timeout={{ enter: 800, exit: 0 }}>
-          <CredentialsStep setButtonVisible={setButtonVisible} info={credentials} setInfo={setCredentials} />
+        <Fade
+          mountOnEnter
+          unmountOnExit
+          in={index === 4}
+          timeout={{ enter: 800, exit: 0 }}
+        >
+          <CredentialsStep setButtonVisible={setButtonVisible} />
         </Fade>
         <Fade
           mountOnEnter
@@ -145,8 +147,9 @@ export default function FormContainer() {
     );
   };
 
-  return (
-    showLoader?<Loader/>:
+  return showLoader ? (
+    <Loader />
+  ) : (
     <div className={classes.formOuterContainer}>
       <div className={classes.loginDiv}>
         <svg className={classes.landingLogo} viewBox="0 0 331.82 85.6">
@@ -183,30 +186,42 @@ export default function FormContainer() {
         </svg>
         <h1 className={classes.landingTitle}>Lorem ipsum dolor sit amet!</h1>
         <p className={classes.landingSubTitle}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam.
         </p>
       </div>
       <div className={classes.formContainer}>
         {showLoader && <Loader />}
-        {index === 0 ? (
+        {/*      {index === 0 ? (
           <InfoList
             setShowList={setShowList}
             in={showList}
             title="Odabrani poslovi"
-            list={Object.keys(selectedJobs).filter((item) => selectedJobs[item])}
+            list={Object.keys(selectedJobs).filter(
+              (item) => selectedJobs[item]
+            )}
           />
         ) : (
           <InfoList
             setShowList={setShowList}
             in={showList}
             title="Odabrani jezici"
-            list={Object.keys(selectedLanguages).filter((item) => selectedLanguages[item])}
+            list={Object.keys(selectedLanguages).filter(
+              (item) => selectedLanguages[item]
+            )}
           />
-        )}
-        <LinearProgress variant="determinate" value={stepInfo.progressPercentage} />
+        )} */}
+        <LinearProgress
+          variant="determinate"
+          value={stepInfo.progressPercentage}
+        />
         <div className={classes.formTopSection}>
-          <IconButton color="primary" onClick={() => loadPreviousStep()} className={classes.backButton}>
+          <IconButton
+            color="primary"
+            onClick={() => loadPreviousStep()}
+            className={classes.backButton}
+          >
             <ArrowBack color="primary" />
           </IconButton>
         </div>
@@ -217,7 +232,10 @@ export default function FormContainer() {
             <Fade timeout={300} in={buttonVisible}>
               <div className={classes.formActionsContainer}>
                 {selectCount > 0 && !matches && (index === 0 || index === 1) && (
-                  <div onClick={() => setShowList(true)} className={classes.selectedCount}>
+                  <div
+                    onClick={() => setShowList(true)}
+                    className={classes.selectedCount}
+                  >
                     {selectCount}
                   </div>
                 )}

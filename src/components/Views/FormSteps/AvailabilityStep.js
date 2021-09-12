@@ -1,24 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Dialog, DialogTitle, DialogContent, Slider, Button, DialogActions } from "@material-ui/core";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Slider,
+  Button,
+  DialogActions,
+} from "@material-ui/core";
 import styles from "../FormContainer/style.js";
+
+//recoil
+import { useRecoilState } from "recoil";
+import { availabilityState } from "../../../atoms/profileState";
+
 const useStyles = makeStyles(styles);
 
 export default function AvailabilityStep(props) {
-  const { days, setDaySelected } = props;
+  const [days, setDaySelected] = useRecoilState(availabilityState);
   const [activeDay, setActiveDay] = useState(null);
   const [activeDayTime, setActiveDayTime] = useState([10, 18]);
 
   useEffect(() => {
-    props.setButtonVisible(Object.values(days).some(el => el !== null));
+    props.setButtonVisible(Object.values(days).some((el) => el !== null));
   }, [days]);
 
   const selectDay = (e, name) => {
-    days[name]?setDaySelected((prevState) => ({ ...prevState, [name]: null })):setActiveDay(name);
+    days[name]
+      ? setDaySelected((prevState) => ({ ...prevState, [name]: null }))
+      : setActiveDay(name);
   };
 
   const saveSelectedTime = () => {
-    setDaySelected((prevState) => ({ ...prevState, [activeDay]: activeDayTime }), setTimeout(() => setActiveDayTime([10, 18]), 500));
+    setDaySelected(
+      (prevState) => ({ ...prevState, [activeDay]: activeDayTime }),
+      setTimeout(() => setActiveDayTime([10, 18]), 500)
+    );
     setActiveDay(null);
   };
 
@@ -58,7 +75,11 @@ export default function AvailabilityStep(props) {
       {Object.keys(days).map((day) => (
         <div
           key={day}
-          className={days[day] ? `${classes.buttonPicker} ${classes.buttonPickerActive}` : classes.buttonPicker}
+          className={
+            days[day]
+              ? `${classes.buttonPicker} ${classes.buttonPickerActive}`
+              : classes.buttonPicker
+          }
         >
           <input
             className={classes.buttonPickerInput}
