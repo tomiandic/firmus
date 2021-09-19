@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ListOption from "../../UI/ListOption";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { List as VirtualList } from "react-virtualized";
@@ -20,6 +20,7 @@ import AddIcon from "@material-ui/icons/Add";
 import data from "../../../data/data.json";
 import noResultsIcon from "./../../../assets/NoResultsIcon.svg";
 import { ArrowBack } from "@material-ui/icons";
+import { languagesContext } from "../../../context/LanguagesProvider";
 
 const useStyles = makeStyles(styles);
 
@@ -27,11 +28,21 @@ export default function LanguageStep(props) {
   const [open, setOpen] = useState(false);
   const [filterValue, setFilterValue] = useState("");
   const [selectedLanguages, setSelectedLanguages] = useState([]);
-
-  const { setSelectCount, setButtonVisible, setLanguageSelected, languages } = props;
+  const [languages, setLanguageSelected] = useContext(languagesContext);
+  const { setSelectCount, setButtonVisible } = props;
 
   useEffect(() => {
-    let langSelectedCount = Object.values(languages).filter((x) => x === true).length;
+    let selectedLanguages = {};
+    data.additionalLanguages.forEach(
+      (language) => (selectedLanguages[language.name] = false)
+    );
+    setLanguageSelected(selectedLanguages);
+  }, []);
+
+  useEffect(() => {
+    let langSelectedCount = Object.values(languages).filter(
+      (x) => x === true
+    ).length;
     setSelectCount(langSelectedCount);
     setButtonVisible(true);
   }, [languages]);
@@ -101,7 +112,10 @@ export default function LanguageStep(props) {
                 onChange={(e) => selectLanguage(e)}
                 checked={languages[language.name]}
               />
-              <svg className={classes.buttonPickerCheck} viewBox="0 0 48.89 48.89">
+              <svg
+                className={classes.buttonPickerCheck}
+                viewBox="0 0 48.89 48.89"
+              >
                 <circle cx="24.45" cy="24.45" r="24.45" fill="#d9e4f4"></circle>
                 <polyline
                   points="10.26 25.54 21.14 35.45 38.63 13.44"
@@ -111,9 +125,17 @@ export default function LanguageStep(props) {
                   strokeWidth="7"
                 ></polyline>
               </svg>
-              <label htmlFor={language.name} className={classes.buttonPickerLabel}>
-                <img className={classes.buttonPickerIcon} src={loadImage(language.iconFilename)} />
-                <span className={classes.buttonPickerTitle}>{language.name}</span>
+              <label
+                htmlFor={language.name}
+                className={classes.buttonPickerLabel}
+              >
+                <img
+                  className={classes.buttonPickerIcon}
+                  src={loadImage(language.iconFilename)}
+                />
+                <span className={classes.buttonPickerTitle}>
+                  {language.name}
+                </span>
               </label>
             </div>
           ))}
@@ -143,7 +165,9 @@ export default function LanguageStep(props) {
                 getOptionLabel={(option) => option}
                 filterSelectedOptions
                 onChange={(event, value) => setSelectedLanguages(value)}
-                renderInput={(params) => <TextField {...params} variant="filled" />}
+                renderInput={(params) => (
+                  <TextField {...params} variant="filled" />
+                )}
                 value={selectedLanguages}
               />
               <br />
@@ -160,7 +184,11 @@ export default function LanguageStep(props) {
           ) : (
             <Paper className={classes.modalContainer}>
               <div className={classes.modalTopActions}>
-                <IconButton onClick={() => setOpen(false)} color="primary" style={{ marginLeft: -10 }}>
+                <IconButton
+                  onClick={() => setOpen(false)}
+                  color="primary"
+                  style={{ marginLeft: -10 }}
+                >
                   <ArrowBack />
                 </IconButton>
                 <TextField
@@ -197,7 +225,12 @@ export default function LanguageStep(props) {
                 )}
               </div>
               <div className={classes.modalActionContainer}>
-                <Button color="primary" variant="contained" onClick={() => setOpen(false)} className={classes.formButton}>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  onClick={() => setOpen(false)}
+                  className={classes.formButton}
+                >
                   Spremi
                 </Button>
               </div>
