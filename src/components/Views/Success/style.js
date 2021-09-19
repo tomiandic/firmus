@@ -33,6 +33,7 @@ export default (theme) => ({
       background: "linear-gradient(to top, #000000c9, transparent)",
     },
   },
+
   loginDiv: {
     background: "#fff",
     height: "100%",
