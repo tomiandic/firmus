@@ -6,8 +6,6 @@ import FormContainer from "./components/Views/FormContainer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import initFacebookSdk from "./helpers/initFacebookSdk";
-import store from "./redux/store";
-import { Provider } from "react-redux";
 
 import theme from "./theme";
 
@@ -17,27 +15,25 @@ initFacebookSdk();
 
 function App() {
   return (
-    <Provider store={store}>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <Landing />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/registracija">
-              <FormContainer />
-            </Route>
-            <Route path="/success">
-              <Success />
-            </Route>
-          </Switch>
-        </Router>
-      </MuiThemeProvider>
-    </Provider>
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Landing />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/registracija">
+            <FormContainer />
+          </Route>
+          <Route path="/success">
+            <Success />
+          </Route>
+        </Switch>
+      </Router>
+    </MuiThemeProvider>
   );
 }
 
