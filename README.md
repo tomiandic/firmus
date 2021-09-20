@@ -8,6 +8,9 @@ Mrežna aplikacija za registraciju studenata na servis za zapošljavanje. Kreira
 - MobX biblioteka
 - Recoil biblioteka
 
+Objavljenoj aplikaciji je moguće pristupiti na sljedećoj poveznici:[https://hopeful-nightingale-7509f4.netlify.app]
+Teorijskom dijelu diplomskog rada moguće je pristupiti klikom na [poveznicu](diplomski.pdf)
+
 ### Način pokretanja aplikacije
 
 Za lokalno pokretanje aplikacije potrebno je klonirati repozitorij te u direktoriju repozitorija prvo instalirati sve potrebne pakete korištenjem `npm install` komande unutar terminala. Nakon što se instalacija svih paketa dovrši, aplikacija se pokreće korištenjem `npm run start` komande u terminalu.
