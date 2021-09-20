@@ -8,7 +8,7 @@ Mrežna aplikacija za registraciju studenata na servis za zapošljavanje. Kreira
 - MobX biblioteka
 - Recoil biblioteka
 
-Objavljenoj aplikaciji je moguće pristupiti na klikom na [poveznicu](https://hopeful-nightingale-7509f4.netlify.app)
+Objavljenoj aplikaciji je moguće pristupiti na klikom na [poveznicu](https://hopeful-nightingale-7509f4.netlify.app) <br><br>
 Teorijskom dijelu diplomskog rada moguće je pristupiti klikom na [poveznicu](diplomski.pdf)
 
 ### Način pokretanja aplikacije
