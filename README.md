@@ -16,12 +16,12 @@ Svaka od različitih implementacija nalazi se unutar posebnog brancha, a unutar 
 
 ### O radu
 
-**Tema:** Upravljanje stanjima unutar React Biblioteke
-**Autor:** Tomislav Anđić(tandjic@unipu.hr)
-**Mentor:** doc. dr. sc. Nikola Tanković(nikola.tankovic@unipu.hr)
-**Predmet:** Izrada informatičkih projekata
+**Tema:** Upravljanje stanjima unutar React Biblioteke <br>
+**Autor:** Tomislav Anđić(tandjic@unipu.hr) <br>
+**Mentor:** doc. dr. sc. Nikola Tanković(nikola.tankovic@unipu.hr) <br>
+**Predmet:** Izrada informatičkih projekata <br>
 
-### Ustanova
+### Ustanove
 
-[Sveučilište Jurja Dobrile u Puli](https://www.unipu.hr/)
+[Sveučilište Jurja Dobrile u Puli](https://www.unipu.hr/) <br>
 [Fakultet informatike u Puli](https://fipu.unipu.hr/)
