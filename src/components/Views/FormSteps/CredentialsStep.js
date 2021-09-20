@@ -5,7 +5,7 @@ import {
   makeStyles,
   InputLabel,
   IconButton,
-  Button, 
+  Button,
   useMediaQuery,
 } from "@material-ui/core";
 import styles from "../FormContainer/style.js";
@@ -23,7 +23,7 @@ export default function CredentialsStep(props) {
 
   useEffect(() => {
     setButtonVisible(checkInfoValidity);
-  }, [info])
+  }, [info]);
 
   const checkInfoValidity = () => {
     return !Object.values(info).includes("");
@@ -40,13 +40,12 @@ export default function CredentialsStep(props) {
 
   const toggleVisibility = () => {
     let input = inputRef.current.children[0].children[0];
-    input.type==="password"?setVisible(true):setVisible(false);
-  }
+    input.type === "password" ? setVisible(true) : setVisible(false);
+  };
 
   const classes = useStyles();
   return (
     <div style={{ ...props.style }} className={classes.basicInfoContainer}>
-
       <div style={{ minWidth: "100%" }} className={classes.inputContainer}>
         <InputLabel className={classes.inputLabel}>Email adresa*</InputLabel>
         <TextField
@@ -59,7 +58,7 @@ export default function CredentialsStep(props) {
         />
       </div>
       <div style={{ minWidth: "100%" }} className={classes.inputContainer}>
-      <InputLabel className={classes.inputLabel}>Lozinka*</InputLabel>
+        <InputLabel className={classes.inputLabel}>Lozinka*</InputLabel>
         <TextField
           ref={inputRef}
           name="password"
@@ -67,18 +66,23 @@ export default function CredentialsStep(props) {
           value={info.password}
           className={classes.infoInput}
           variant="filled"
-          type={visible?"text":"password"}
-          InputProps={{endAdornment: <IconButton onClick={() => toggleVisibility()}>{visible?<VisibilityOff />:<Visibility />}</IconButton>}}
+          type={visible ? "text" : "password"}
+          InputProps={{
+            endAdornment: (
+              <IconButton onClick={() => toggleVisibility()}>
+                {visible ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            ),
+          }}
         />
       </div>
-      <div className={classes.separator}>ili</div>
+      {/*    <div className={classes.separator}>ili</div>
 
-      <div className={classes.socialMediaLogin}>
+           <div className={classes.socialMediaLogin}>
           <p>Odaberite društvenu mrežu za brzu prijavu</p>
           <Button onClick={() => accountService.login} style={{background: "#4267B2"}} className={classes.socialButton}>Facebook</Button>
           <Button style={{background: "radial-gradient(circle at 0% 107%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)"}} className={classes.socialButton}>Instagram</Button>
-      </div>
-    
+      </div> */}
     </div>
   );
 }

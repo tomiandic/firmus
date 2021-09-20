@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Dialog, DialogTitle, DialogContent, Slider, Button, DialogActions } from "@material-ui/core";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Slider,
+  Button,
+  DialogActions,
+} from "@material-ui/core";
 import styles from "../FormContainer/style.js";
 const useStyles = makeStyles(styles);
 
@@ -10,15 +17,20 @@ export default function AvailabilityStep(props) {
   const [activeDayTime, setActiveDayTime] = useState([10, 18]);
 
   useEffect(() => {
-    props.setButtonVisible(Object.values(days).some(el => el !== null));
+    props.setButtonVisible(Object.values(days).some((el) => el !== null));
   }, [days]);
 
   const selectDay = (e, name) => {
-    days[name]?setDaySelected((prevState) => ({ ...prevState, [name]: null })):setActiveDay(name);
+    days[name]
+      ? setDaySelected((prevState) => ({ ...prevState, [name]: null }))
+      : setActiveDay(name);
   };
 
   const saveSelectedTime = () => {
-    setDaySelected((prevState) => ({ ...prevState, [activeDay]: activeDayTime }), setTimeout(() => setActiveDayTime([10, 18]), 500));
+    setDaySelected(
+      (prevState) => ({ ...prevState, [activeDay]: activeDayTime }),
+      setTimeout(() => setActiveDayTime([10, 18]), 500)
+    );
     setActiveDay(null);
   };
 
@@ -52,13 +64,25 @@ export default function AvailabilityStep(props) {
       value: 20,
       label: "20",
     },
+    {
+      value: 22,
+      label: "22",
+    },
+    {
+      value: 24,
+      label: "24",
+    },
   ];
   return (
     <div style={{ ...props.style }} className={classes.pickerContainer}>
       {Object.keys(days).map((day) => (
         <div
           key={day}
-          className={days[day] ? `${classes.buttonPicker} ${classes.buttonPickerActive}` : classes.buttonPicker}
+          className={
+            days[day]
+              ? `${classes.buttonPicker} ${classes.buttonPickerActive}`
+              : classes.buttonPicker
+          }
         >
           <input
             className={classes.buttonPickerInput}
@@ -81,18 +105,19 @@ export default function AvailabilityStep(props) {
           <label htmlFor={day} className={classes.buttonPickerLabel}>
             <span className={classes.buttonPickerTitleBig}>{day}</span>
           </label>
+          <div className={classes.dayTimeBadge}>{days[day]?.join(" - ")}</div>
         </div>
       ))}
       <Dialog open={activeDay ? true : false}>
         <DialogTitle>Raspon vremena kada ste slobodni za rad</DialogTitle>
-        <DialogContent style={{ width: 300 }}>
+        <DialogContent>
           <Slider
             marks={marks}
             onChange={(e, newVal) => setActiveDayTime(newVal)}
             value={activeDayTime}
             step={1}
             min={7}
-            max={22}
+            max={24}
           />
         </DialogContent>
         <DialogActions>

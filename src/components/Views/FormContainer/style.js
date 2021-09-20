@@ -50,7 +50,7 @@ export default (theme) => ({
       fontWeight: "200",
     },
     "& div": {
-      fontSize: 16, 
+      fontSize: 16,
     },
     "&.Mui-expanded": {
       borderBottom: `2px solid ${theme.palette.primary.main}`,
@@ -103,7 +103,8 @@ export default (theme) => ({
     right: 20,
   },
   formActionsContainer: {
-    background: "linear-gradient(to top, white, white, white, transparent, transparent)",
+    background:
+      "linear-gradient(to top, white, white, white, transparent, transparent)",
     bottom: 0,
     left: 0,
     padding: "65px 20px 35px 20px",
@@ -173,7 +174,7 @@ export default (theme) => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    height: "95px"
+    height: "95px",
   },
   buttonPickerTitle: {
     color: theme.palette.text.light,
@@ -452,7 +453,7 @@ export default (theme) => ({
     fontSize: 20,
     color: "#fff",
     marginRight: 8,
-    cursor: "pointer"
+    cursor: "pointer",
   },
   separator: {
     display: "flex",
@@ -461,27 +462,27 @@ export default (theme) => ({
     minWidth: "100%",
     color: "lightgray",
     padding: "30px 0",
-    "&:before":{
+    "&:before": {
       content: '""',
       flex: 1,
-      borderBottom: `1px solid lightgray`
+      borderBottom: `1px solid lightgray`,
     },
-    "&:after":{
+    "&:after": {
       content: '""',
       flex: 1,
-      borderBottom: `1px solid lightgray`
+      borderBottom: `1px solid lightgray`,
     },
-    "&:not(:empty)::after":{
-      marginLeft: 15
+    "&:not(:empty)::after": {
+      marginLeft: 15,
     },
-    "&:not(:empty)::before":{
-      marginRight: 15
-    }
+    "&:not(:empty)::before": {
+      marginRight: 15,
+    },
   },
   socialButton: {
     color: "#fff",
     padding: "8px 20px",
-    marginRight: 10
+    marginRight: 10,
   },
   socialMediaLogin: {
     borderRadius: 10,
@@ -489,12 +490,23 @@ export default (theme) => ({
     border: `1px solid lightgray`,
     padding: 20,
     width: "100%",
-    "&>p":{
+    "&>p": {
       fontSize: 12,
       fontWeight: 500,
-      marginTop: -5
-    }
-  }
-
-  
+      marginTop: -5,
+    },
+  },
+  dayTimeBadge: {
+    position: "absolute",
+    bottom: 10,
+    fontSize: 10,
+    fontWeight: "500",
+    background: theme.palette.primary.main,
+    borderRadius: 5,
+    padding: "2px 5px",
+    color: "#fff",
+    left: "50%",
+    transform: "translate(-50%)",
+    whiteSpace: "nowrap",
+  },
 });

@@ -23,10 +23,10 @@ function App() {
             <Landing />
           </Route>
           <Route exact path="/login">
-            <Login/>
+            <Login />
           </Route>
           <Route exact path="/registracija">
-            <FormContainer/>
+            <FormContainer />
           </Route>
           <Route path="/success">
             <Success />
@@ -36,5 +36,8 @@ function App() {
     </MuiThemeProvider>
   );
 }
+
+//prevent console logs
+/* console.log = () => {}; */
 
 export default App;
