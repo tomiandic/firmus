@@ -62,6 +62,10 @@ export default function FormContainer() {
     setStepInfo(data.steps[index], setShowLoader(false));
   }, []);
 
+  useEffect(() => {
+    console.log(selectedLanguages);
+  }, [selectedLanguages]);
+
   const setUpData = () => {
     let selectedJobs = {},
       selectedLanguages = {};
