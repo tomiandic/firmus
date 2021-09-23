@@ -77,6 +77,14 @@ export default function AvailabilityStep(props) {
       value: 20,
       label: "20",
     },
+    {
+      value: 22,
+      label: "22",
+    },
+    {
+      value: 24,
+      label: "24",
+    },
   ];
   return (
     <div style={{ ...props.style }} className={classes.pickerContainer}>
@@ -110,21 +118,19 @@ export default function AvailabilityStep(props) {
           <label htmlFor={day} className={classes.buttonPickerLabel}>
             <span className={classes.buttonPickerTitleBig}>{day}</span>
           </label>
-          {days[day] && (
-            <div className={classes.badge}>{days[day].join(" - ")}</div>
-          )}
+          <div className={classes.dayTimeBadge}>{days[day]?.join(" - ")}</div>
         </div>
       ))}
       <Dialog open={activeDay ? true : false}>
         <DialogTitle>Raspon vremena kada ste slobodni za rad</DialogTitle>
-        <DialogContent style={{ width: 300 }}>
+        <DialogContent>
           <Slider
             marks={marks}
             onChange={(e, newVal) => setActiveDayTime(newVal)}
             value={activeDayTime}
             step={1}
             min={7}
-            max={22}
+            max={24}
           />
         </DialogContent>
         <DialogActions>

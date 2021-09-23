@@ -7,7 +7,7 @@ import {
   Accordion,
 } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
-
+import data from "../../../data/data.json";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -22,7 +22,7 @@ import styles from "../FormContainer/style.js";
 const useStyles = makeStyles(styles);
 
 export default function JobStep(props) {
-  const { jobs, setButtonVisible, setSelectCount } = props;
+  const { setButtonVisible, setSelectCount } = props;
 
   const dispatch = useDispatch();
   const selectedJobs = useSelector((state) => state.userProfile.selectedJobs);
@@ -52,7 +52,7 @@ export default function JobStep(props) {
   if (Object.keys(selectedJobs).length > 0) {
     return (
       <div style={{ ...props.style }}>
-        {Object.keys(jobs).map((jobCategory) => (
+        {Object.keys(data.allJobs).map((jobCategory) => (
           <Accordion key={jobCategory} className={classes.accordionContainer}>
             <AccordionSummary
               elevation={1}
@@ -64,12 +64,12 @@ export default function JobStep(props) {
               </div>
               <div>
                 {jobCategory}
-                <span>{jobs[jobCategory].length} potkategorija</span>
+                <span>{data.allJobs[jobCategory].length} potkategorija</span>
               </div>
             </AccordionSummary>
             <AccordionDetails>
               <List className={classes.inputList}>
-                {jobs[jobCategory].map((job) => {
+                {data.allJobs[jobCategory].map((job) => {
                   return (
                     <ListOption
                       key={job.name}

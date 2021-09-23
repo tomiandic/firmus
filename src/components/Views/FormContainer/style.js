@@ -473,7 +473,7 @@ export default (theme) => ({
     textAlign: "center",
     minWidth: "100%",
     color: "lightgray",
-    padding: "20px 0",
+    padding: "30px 0",
     "&:before": {
       content: '""',
       flex: 1,
@@ -493,18 +493,30 @@ export default (theme) => ({
   },
   socialButton: {
     color: "#fff",
-    padding: "6px 15px",
+    padding: "8px 20px",
     marginRight: 10,
-    marginTop: 10,
-    fontSize: 11,
   },
   socialMediaLogin: {
     marginTop: 20,
     padding: 5,
     width: "100%",
     "&>p": {
-      fontSize: 11,
+      fontSize: 12,
       fontWeight: 500,
+      marginTop: -5,
     },
+  },
+  dayTimeBadge: {
+    position: "absolute",
+    bottom: 10,
+    fontSize: 10,
+    fontWeight: "500",
+    background: theme.palette.primary.main,
+    borderRadius: 5,
+    padding: "2px 5px",
+    color: "#fff",
+    left: "50%",
+    transform: "translate(-50%)",
+    whiteSpace: "nowrap",
   },
 });

@@ -32,8 +32,8 @@ export default function LanguageStep(props) {
   const [filterValue, setFilterValue] = useState("");
   const [selectedLanguages, setSelectedLanguages] = useState([]);
 
-  const { setSelectCount, setButtonVisible, setLanguageSelected, languages } =
-    props;
+  const { setSelectCount, setButtonVisible } = props;
+  const languages = useSelector((state) => state.userProfile.selectedLanguages);
 
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -52,15 +52,13 @@ export default function LanguageStep(props) {
   }, [languages]);
 
   const selectLanguage = (e) => {
-    let prevState = { ...languages };
-    prevState[e.target.name] = !prevState[e.target.name];
+    let changedVal = e.target.name;
     dispatch(
       updateProfile({
         property: "selectedLanguages",
-        value: prevState,
+        value: { [changedVal]: !languages[changedVal] },
       })
     );
-    setLanguageSelected(prevState);
   };
 
   const saveSelectedLanguages = () => {
@@ -75,7 +73,6 @@ export default function LanguageStep(props) {
         value: prevState,
       })
     );
-    setLanguageSelected(prevState);
   };
 
   const filterLanguages = (language) => {

@@ -56,6 +56,8 @@ export default function BasicInfoStep(props) {
   const [datePickerOpen, setDatePickerOpen] = useState(false);
   const [currentLocation, setCurrentLocation] = useState(null);
   const [locationError, setLocationError] = useState(null);
+  const [pickedCity, setPickedCity] = useState(null);
+  const [filteredCities, setFilteredCities] = useState(data.cities);
 
   const { setInfo, setButtonVisible } = props;
   const dispatch = useDispatch();
@@ -64,6 +66,15 @@ export default function BasicInfoStep(props) {
   useEffect(() => {
     setButtonVisible(checkInfoValidity);
   }, [info]);
+
+  useEffect(() => {
+    console.log(filterValue);
+    const Cities = data.cities.filter((city) =>
+      city.toLowerCase().includes(filterValue.toLowerCase())
+    );
+    console.log(Cities);
+    setFilteredCities(Cities);
+  }, [filterValue]);
 
   //TODO: validate.js ili slicni plugin
   const checkInfoValidity = () => {
@@ -92,6 +103,16 @@ export default function BasicInfoStep(props) {
     setDatePickerOpen(false);
   };
 
+  const formatDate = (date) => {
+    if (!(date instanceof Date)) return;
+    let day = date.getDate();
+    day = day < 10 ? `0${day}` : day;
+    let month = date.getMonth() + 1;
+    month = month < 10 ? `0${month}` : month;
+    let year = date.getFullYear();
+    return `${year}-${month}-${day}`;
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     dispatch(
@@ -112,18 +133,6 @@ export default function BasicInfoStep(props) {
       })
     );
     setOpenCityList(false);
-  };
-
-  const filterCities = (city) => {
-    return city.toLowerCase().includes(filterValue);
-  };
-
-  const formatDate = (date) => {
-    if (!(date instanceof Date)) return;
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    return `${day}/${month}/${year}`;
   };
 
   const getUserLocation = () => {
@@ -169,16 +178,9 @@ export default function BasicInfoStep(props) {
     setOpenCityList(false);
   };
 
-  const rowRenderer = ({
-    index,
-    isScrolling,
-    isVisible,
-    key,
-    parent,
-    style,
-  }) => {
-    const filteredCities = data.cities.filter(filterCities);
+  const rowRenderer = ({ index, key, style }) => {
     const city = filteredCities[index];
+    console.log(city);
     return (
       <ListOption
         type="radio"
@@ -192,7 +194,7 @@ export default function BasicInfoStep(props) {
   };
 
   const classes = useStyles();
-  let rowCount = data.cities ? data.cities.filter(filterCities).length : 0;
+
   return (
     <div style={{ ...props.style }} className={classes.basicInfoContainer}>
       <div style={{ minWidth: "100%" }} className={classes.inputContainer}>
@@ -230,6 +232,10 @@ export default function BasicInfoStep(props) {
             }
             getOptionLabel={(option) => option}
             name="city"
+            onChange={(event, value) => {
+              console.log(value);
+              setInfo((prevState) => ({ ...prevState, ["city"]: value }));
+            }}
             inputValue={info.city}
             renderInput={(params) => (
               <TextField
@@ -269,10 +275,11 @@ export default function BasicInfoStep(props) {
               inputProps={{ readOnly: true }}
               onClick={handleDatePickerOpen}
               onChange={(e) => handleInputChange(e)}
-              value={formatDate(new Date(info.date))}
+              value={info.date}
               name="date"
               className={classes.infoInput}
               variant="filled"
+              type="date"
             />
             <DatePicker
               value={new Date(info.date)}
@@ -290,16 +297,6 @@ export default function BasicInfoStep(props) {
         )}
       </div>
 
-      {/* <div style={{ minWidth: "100%" }} className={classes.inputContainer}>
-        <InputLabel className={classes.inputLabel}>Email adresa*</InputLabel>
-        <TextField
-          name="mail"
-          onChange={(e) => handleInputChange(e)}
-          value={info.mail}
-          className={classes.infoInput}
-          variant="filled"
-        />
-      </div> */}
       <div style={{ minWidth: "100%" }} className={classes.inputContainer}>
         <InputLabel className={classes.inputLabel}>Spol*</InputLabel>
 
@@ -440,7 +437,7 @@ export default function BasicInfoStep(props) {
         BackdropComponent={Backdrop}
         onClose={() => setOpenCityList(false)}
       >
-        <Fade in={openCityList}>
+        <Fade unmountOnExit in={openCityList}>
           <Paper className={classes.modalContainer}>
             <div className={classes.modalTopActions}>
               <div onClick={getUserLocation} className={classes.locationButton}>
@@ -470,18 +467,16 @@ export default function BasicInfoStep(props) {
                 variant="outlined"
                 value={filterValue}
                 className={classes.modalInput}
-                onChange={(e) => setFilterValue(e.target.value.toLowerCase())}
+                onChange={(e) => setFilterValue(e.target.value)}
                 placeholder="&#x1F50D; Pretraži grad.."
               />
             </div>
             <div className={classes.modalContent}>
-              {rowCount > 0 ? (
+              {openCityList && (
                 <VirtualList
                   width={1}
                   height={1000}
-                  rowCount={
-                    data.cities ? data.cities.filter(filterCities).length : 0
-                  }
+                  rowCount={filteredCities.length}
                   rowHeight={65}
                   rowRenderer={rowRenderer}
                   containerStyle={{
@@ -490,14 +485,9 @@ export default function BasicInfoStep(props) {
                   }}
                   style={{ width: "100%" }}
                 />
-              ) : (
-                <div className={classes.modalFeedback}>
-                  <img className={classes.illustration} src={noResultsIcon} />
-                  <p className={classes.modalFeedbackTitle}>Nema rezultata</p>
-                </div>
               )}
             </div>
-            {/*     <div className={classes.modalActionContainer}>
+            {/* <div className={classes.modalActionContainer}>
               <Button
                 color="primary"
                 variant="contained"

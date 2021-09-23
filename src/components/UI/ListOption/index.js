@@ -39,5 +39,8 @@ function ListOption(props) {
 }
 
 export default memo(ListOption, (prevProps, nextProps) => {
-  return !(prevProps.optionChecked !== nextProps.optionChecked);
+  return !(
+    prevProps.optionChecked !== nextProps.optionChecked ||
+    prevProps.optionName != nextProps.optionName
+  );
 });

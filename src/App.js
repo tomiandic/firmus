@@ -37,4 +37,7 @@ function App() {
   );
 }
 
+//prevent console logs
+/* console.log = () => {}; */
+
 export default App;

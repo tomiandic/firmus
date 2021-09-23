@@ -35,23 +35,8 @@ export default function FormContainer() {
   const [showLoader, setShowLoader] = useState(true);
   const [showList, setShowList] = useState(false);
   const [buttonVisible, setButtonVisible] = useState(false);
-  const [jobs, setJobs] = useState({});
-  const [selectedLanguages, setLanguageSelected] = useState({});
   const [stepInfo, setStepInfo] = useState(null);
-  const [availability, setDaySelected] = useState(data.days);
-  const [phoneNumber, setPhoneNumber] = useState("+385 ");
   const [index, setIndex] = useState(0);
-  const [info, setInfo] = useState({
-    fullName: "",
-    city: "",
-    date: new Date("1999-01-01"),
-    genre: "F",
-    gdpr: false,
-  });
-  const [credentials, setCredentials] = useState({
-    mail: "",
-    password: "",
-  });
 
   const classes = useStyles();
   const history = useHistory();
@@ -60,18 +45,8 @@ export default function FormContainer() {
   const selectedJobs = useSelector((state) => state.userProfile.selectedJobs);
 
   useEffect(() => {
-    setUpData();
     setStepInfo(data.steps[index], setShowLoader(false));
   }, []);
-
-  const setUpData = () => {
-    let selectedLanguages = {};
-    data.additionalLanguages.forEach(
-      (language) => (selectedLanguages[language.name] = false)
-    );
-    setJobs(data.allJobs);
-    setLanguageSelected(selectedLanguages);
-  };
 
   const loadNextStep = () => {
     if (index < 6) {
@@ -108,7 +83,6 @@ export default function FormContainer() {
           <JobStep
             setSelectCount={setSelectCount}
             setButtonVisible={setButtonVisible}
-            jobs={jobs}
           />
         </Fade>
         <Fade
@@ -121,8 +95,6 @@ export default function FormContainer() {
           <LanguageStep
             setSelectCount={setSelectCount}
             setButtonVisible={setButtonVisible}
-            languages={selectedLanguages}
-            setLanguageSelected={setLanguageSelected}
           />
         </Fade>
         <Fade
@@ -141,10 +113,7 @@ export default function FormContainer() {
           appear={index === 3}
           timeout={{ enter: 800, exit: 0 }}
         >
-          <BasicInfoStep
-            setButtonVisible={setButtonVisible}
-            setInfo={setInfo}
-          />
+          <BasicInfoStep setButtonVisible={setButtonVisible} />
         </Fade>
         <Fade
           mountOnEnter
@@ -153,11 +122,7 @@ export default function FormContainer() {
           appear={index === 4}
           timeout={{ enter: 800, exit: 0 }}
         >
-          <CredentialsStep
-            setButtonVisible={setButtonVisible}
-            info={credentials}
-            setInfo={setCredentials}
-          />
+          <CredentialsStep setButtonVisible={setButtonVisible} />
         </Fade>
         <Fade
           mountOnEnter
@@ -167,11 +132,7 @@ export default function FormContainer() {
           setShowLoader={setShowLoader}
           timeout={{ enter: 800, exit: 0 }}
         >
-          <PhoneNumberStep
-            setButtonVisible={setButtonVisible}
-            phoneNumber={phoneNumber}
-            setPhoneNumber={setPhoneNumber}
-          />
+          <PhoneNumberStep setButtonVisible={setButtonVisible} />
         </Fade>
         <Fade
           mountOnEnter
@@ -234,7 +195,7 @@ export default function FormContainer() {
       </div>
       <div className={classes.formContainer}>
         {showLoader && <Loader />}
-        {index === 0 ? (
+        {/*         {index === 0 ? (
           <InfoList
             setShowList={setShowList}
             in={showList}
@@ -252,7 +213,7 @@ export default function FormContainer() {
               (item) => selectedLanguages[item]
             )}
           />
-        )}
+        )} */}
         <LinearProgress
           variant="determinate"
           value={stepInfo.progressPercentage}

@@ -90,36 +90,13 @@ export default function CredentialsStep(props) {
           }}
         />
       </div>
-      <div className={classes.separator}>ili</div>
+      {/*    <div className={classes.separator}>ili</div>
 
-      <div className={classes.socialMediaLogin}>
-        <p>Odaberite platformu za brzu prijavu</p>
-        <Button
-          onClick={() => accountService.login}
-          style={{ background: "#4267B2" }}
-          className={classes.socialButton}
-          startIcon={<FacebookIcon />}
-        >
-          Facebook
-        </Button>
-        <Button
-          startIcon={<InstagramIcon />}
-          style={{
-            background:
-              "radial-gradient(circle at 0% 107%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)",
-          }}
-          className={classes.socialButton}
-        >
-          Instagram
-        </Button>
-        <Button
-          style={{ boxShadow: "0 0 20px -8px", color: "gray" }}
-          className={classes.socialButton}
-          startIcon={<GoogleIcon style={{ height: 15, width: 15 }} />}
-        >
-          Google
-        </Button>
-      </div>
+           <div className={classes.socialMediaLogin}>
+          <p>Odaberite društvenu mrežu za brzu prijavu</p>
+          <Button onClick={() => accountService.login} style={{background: "#4267B2"}} className={classes.socialButton}>Facebook</Button>
+          <Button style={{background: "radial-gradient(circle at 0% 107%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)"}} className={classes.socialButton}>Instagram</Button>
+      </div> */}
     </div>
   );
 }
